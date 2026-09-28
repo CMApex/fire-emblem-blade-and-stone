@@ -25,6 +25,7 @@ python3 tools/import_fe7_faces.py "$FE7" "$FE8"
 python3 tools/buildmaps.py
 python3 tools/extract_tables.py "$FE8"
 python3 tools/gencast.py "$FE8" "$FE7"
+python3 tools/port_banims.py "$FE8" "$FE7"
 python3 tools/gentext.py
 python3 tools/sync_engine.py
 
@@ -37,5 +38,6 @@ if grep -qE "Errors occurred|error:|Error " build/make.log || ! grep -q "No erro
 fi
 OUT="build/${BS_OUT:-BladeAndStone}.gba"
 cp -f engine/fe8-kernel-dev.gba "$OUT"
+python3 tools/postpatch.py "$OUT" engine/fe8-kernel-dev.sym
 python3 tools/ups.py make "$FE8" "$OUT" "${OUT%.gba}.ups" >/dev/null
 echo "Built $OUT ($(stat -c %s "$OUT") bytes) and ${OUT%.gba}.ups"

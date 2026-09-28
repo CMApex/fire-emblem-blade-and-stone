@@ -17,6 +17,7 @@
 #include "gen/FE7Faces.event"
 #include "gen/Characters.event"
 #include "gen/Classes.event"
+#include "gen/Banims.event"          // FE7 battle animations + personal palettes (tools/port_banims.py)
 #include "Data/Leaders.event"
 #include "Events/Quotes.event"
 
