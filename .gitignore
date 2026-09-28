@@ -1,0 +1,9 @@
+# ROMs and derived data — never commit
+*.gba
+*.sav
+*.ss
+roms/
+build/
+FE8_clean.sym
+SkillsTest.*
+__pycache__/

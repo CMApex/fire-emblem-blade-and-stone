@@ -1,0 +1,149 @@
+// ============================================================
+//  Blade & Stone — Prologue: The Year After
+//  Portraits: Eirika 0x02, Seth 0x04, Ephraim 0x14, Forde 0x16, Kyle 0x18
+// ============================================================
+
+## BS_Ch0Name
+Prologue: The Year After[X]
+
+## BS_Ch0Goal
+Seize chapel[X]
+
+## BS_DrownedName
+Drowned Knight[X]
+
+## BS_DrownedDesc
+A knight in rusted Renais armor.[N]
+It walked out of the sea.[X]
+
+## BS_WMIntro
+The continent of Magvel.[A][NL]
+One year has passed since the[.][NL]
+Demon King fell.[.][A][NL]
+The Sacred Stones that bound him[NL]
+for eight hundred years are gone,[.][A][NL]
+shattered, one by one, in the war[NL]
+that finally ended him.[.][A][0x02][NL]
+[LoadOverworldFaces]In Renais, Princess Eirika and her[NL]
+brother, now King Ephraim,[.][A][NL]
+have spent that year rebuilding[NL]
+what the war took from them.[.][A][0x02][NL]
+[LoadOverworldFaces]Few in Magvel have ever wondered[NL]
+what lies beyond the Gray Sea.[.][A][NL]
+Fewer still have tried to cross it.[.][A][NL]
+Sailors say its eastern waters are[NL]
+cursed... that the sea there sings.[.][A][0x02][NL]
+[LoadOverworldFaces]This year, for the first time,[NL]
+the singing reached the shore.[.][A][X]
+
+## BS_P_Opening
+[OpenMidLeft][LoadFace][0x02][0x01][OpenMidRight][LoadFace][0x04][0x01][OpenMidLeft]One year to the day. It feels[.][NL]
+like ten, and like none at all.[A][OpenMidRight]The people of Merrow asked for you[.][NL]
+by name, Princess.[.][A][NL]
+Your visit meant a great deal to them.[A][OpenMidLeft]I only listened to them, Seth.[.][A][NL]
+After everything, listening is the[NL]
+least I owe them.[.][A][OpenFarRight][LoadFace][0x16][0x01][OpenFarRight]Kyle, look at the light on the water.[NL]
+I have to paint this.[.][A][OpenFarLeft][LoadFace][0x18][0x01][OpenFarLeft]You said that about the last four[NL]
+skies. We are on a schedule, Forde.[A][OpenFarRight]Schedules are for people with no[NL]
+sense of beauty.[.][A][OpenFarLeft]Schedules are for people who don't[NL]
+want Seth staring at them.[.][A][OpenMidRight][ToggleMouthMove]......[ToggleMouthMove][A][OpenFarRight][ToggleMouthMove]...[.][ToggleMouthMove]Right. Painting later.[.][A][OpenMidLeft]Let him paint, Seth. We've earned[NL]
+one quiet afternoon.[.][A][OpenMidRight]As you say, Princess.[.][A][NL]
+Though I will note that it is the[NL]
+fourth sky.[.][A][X]
+
+## BS_P_Tremor
+[OpenMidRight][LoadFace][0x04][0x01][OpenMidLeft][LoadFace][0x02][0x01][OpenMidRight]Princess, stay behind me.[.][NL]
+Something is wrong with the sea.[A][OpenMidLeft]The water is glowing.[.][NL]
+Near the old chapel on the point.[A][OpenFarLeft][LoadFace][0x18][0x01][OpenFarLeft]The Stone Chapel? There's nothing[NL]
+left there but a few old walls.[.][A][NL]
+Pilgrims used to come to give thanks[NL]
+for Renais's Sacred Stone, but...[A][OpenMidLeft]But the Stone is gone.[.][NL]
+We all saw what became of it.[.][A][X]
+
+## BS_P_Monsters
+[OpenFarRight][LoadFace][0x16][0x01][OpenMidLeft][LoadFace][0x02][0x01][OpenFarRight]Monsters? Here?[.][A][NL]
+The Demon King is dead.[.][NL]
+We watched him die![A][OpenMidLeft]Then they have no master to[NL]
+answer to...[.][A][NL]
+and nothing to stop them from[NL]
+reaching Merrow.[.][A][OpenMidRight][LoadFace][0x04][0x01][OpenMidRight]Your orders, Princess?[A][OpenMidLeft]Keep them away from the village.[.][A][NL]
+Then we go to the chapel and learn[NL]
+what is calling them out of the sea.[.][A][OpenFarRight]For Renais![.][A][OpenFarLeft][LoadFace][0x18][0x01][OpenFarLeft]For the schedule.[A][X]
+
+## BS_P_Turn2
+[OpenMidRight][LoadFace][0x04][0x01][OpenMidRight]Princess, the tide is pulling back[NL]
+from the beach. All at once.[.][A][NL]
+That is not a tide. Something is[NL]
+coming out of the water. Be ready.[.][A][X]
+
+## BS_P_Turn4
+[OpenFarLeft][LoadFace][0x18][0x01][OpenFarLeft]Shapes over the water![.][NL]
+Winged. Coming in low from the sea![A][OpenMidRight][LoadFace][0x04][0x01][OpenMidRight]Gargoyles. Keep the archers' lesson[NL]
+in mind: don't let them surround you.[A][OpenFarLeft]We don't have any archers.[A][OpenMidRight]Then don't let them surround you.[.][A][X]
+
+## BS_P_Village
+[OpenMidLeft][LoadFace][0x58][0x01][OpenMidRight][LoadFace][0xFF][0xFF][OpenMidLeft]You came back for us.[.][A][NL]
+Not a year since the war, and here[.][NL]
+you are again, with swords drawn.[A][NL]
+My wife kept this bottle for the day[NL]
+the monsters came back.[.][A][NL]
+She said they would.[.][NL]
+Everyone laughed.[.][A][0x02][NL]
+Take it. And come back safe,[.][NL]
+so I can tell her she was right.[.][A][X]
+
+## BS_P_House
+[OpenMidLeft][LoadFace][0x59][0x01][OpenMidRight][LoadFace][0xFF][0xFF][OpenMidLeft]Forty years I've fished this water.[.][A][NL]
+Since spring, the sea's been singing[.][NL]
+at night. Low, like a hymn.[.][A][NL]
+Nobody believes an old man.[.][NL]
+But you heard it too, didn't you?[.][A][0x02][NL]
+The singing comes from the east.[.][NL]
+From past the edge of every chart.[.][A][X]
+
+## BS_P_BossBattle
+[OpenMidLeft][LoadFace][0x02][0x01][OpenMidLeft]That armor... Renais armor.[.][NL]
+Who were you?[A][X]
+
+## BS_P_Ending1
+[OpenMidLeft][LoadFace][0x02][0x01][OpenMidRight][LoadFace][0x04][0x01][OpenMidLeft]The glow is fading.[.][NL]
+Whatever opened here is closing.[.][A][OpenMidRight]For now.[.][A][OpenFarLeft][LoadFace][0x18][0x01][OpenFarLeft]Princess! There's someone down on the[NL]
+beach. A man. He's half-drowned.[A][X]
+
+## BS_P_Ending2
+[OpenMidLeft][LoadFace][0x02][0x01][OpenMidLeft]Can you hear me?[.][NL]
+You're safe now. Can you stand?[A][OpenMidRight][LoadLegault][OpenMidRight]Dry land. Wonderful.[.][A][NL]
+Tell me, whose dry land is it?[A][OpenMidLeft]You're in Renais. Who are you?[A][OpenMidRight]Renais?[.][NL]
+Never heard of it.[.][A][NL]
+Which rather answers the question of[NL]
+how far off course I am.[.][A][0x02][NL]
+The name's Legault.[.][NL]
+I was sailing east of Lycia, near[.][A][NL]
+the Dread Isle... and then the sea[NL]
+opened. Like a mouth.[.][A][OpenFarRight][LoadFace][0x04][0x01][OpenFarRight]Lycia? There is no such country.[A][OpenMidRight]There is, I assure you.[.][NL]
+I've robbed half of it.[.][A][NL]
+[ToggleMouthMove]...[.][ToggleMouthMove]Former profession. I'm reformed.[.][NL]
+Mostly.[A][OpenMidLeft]Where is Lycia, Legault?[A][OpenMidRight]Across the sea.[.][NL]
+That sea. The one nobody can cross.[.][A][X]
+
+## BS_P_Ending3
+[OpenFarRight][LoadFace][0x14][0x01][OpenFarRight]Eirika![A][OpenMidLeft][LoadFace][0x02][0x01][OpenMidLeft]Brother? What are you doing here?[.][NL]
+You're meant to be in the capital.[.][A][OpenFarRight]I rode through the night.[.][NL]
+Monsters came out of the ground at[.][A][NL]
+the old Stone shrine by the castle.[.][NL]
+Frelia's riders say the same.[.][A][NL]
+And Grado's. Every place a Sacred[NL]
+Stone once rested.[.][A][0x02][NL]
+[ToggleMouthMove]...[.][ToggleMouthMove]Who is that?[A][OpenMidRight][LoadLegault][OpenMidRight]A visitor. From out of town.[.][NL]
+Quite far out of town.[.][A][OpenMidLeft]Ephraim, the Stones held the Demon[NL]
+King. We thought that was all.[.][A][NL]
+What if it wasn't? What if they[.][NL]
+were holding something else back?[A][OpenFarRight][ToggleMouthMove]...[.][ToggleMouthMove][A][OpenMidRight]Well.[.][A][NL]
+I seem to have arrived at an[NL]
+interesting time.[.][A][X]
+
+## BS_P_End
+[OpenMidLeft][LoadFace][0x02][0x01][OpenMidLeft]Thank you for playing the[NL]
+Blade & Stone prologue.[.][A][NL]
+The story continues across the sea,[NL]
+in Lycia.[.][A][X]

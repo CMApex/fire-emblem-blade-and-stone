@@ -1,0 +1,56 @@
+// Blade & Stone — world map narration before the Prologue.
+// Structure mirrors vanilla FE8's prologue WM script (text segments end with [A][0x02]).
+WorldMapPointerTable(0,WM_Events)  // stdlib base is 0x8B39F0 = entry 1 (prologue)
+
+WM_Events:
+EVBIT_MODIFY 0x1
+_0xC220
+WM_SPAWNLORD 0x0 0x0 0x1 0x14 0x0      // Eirika at Renais Castle (node 20)
+WM_CENTERCAMONLORD
+MUSCFAST 0x7FFF
+STAL 32
+MUSC 0x04                              // The Beginning
+WM_SHOWDRAWNMAP 0x0 0x0 0x0 0x10 0x0
+STAL 2
+WM_FADEOUT 0x0 0x0 0x0
+WM_TEXTDECORATE
+EVBIT_MODIFY 0x0
+STAL 60
+WM_SHOWTEXTWINDOW 0x0 0x28 0x1
+WM_WAITFORTEXT
+WM_TEXTSTART
+WM_TEXT BS_WMIntro
+TEXTEND
+
+// segment 2: Renais
+WM_MOVECAM2 0x0 0x0 0x0 0x0 0x18 0x3C 0x0
+STAL 60
+WM_SHOWPORTRAIT 0x2 700
+STAL 32
+WM_HIGHLIGHT 0x0 0x7 0x0
+TEXTCONT
+TEXTEND
+STAL 30
+WM_HIGHLIGHTCLEAR1 0x0 0x7 0x0
+WM_HIGHLIGHTCLEAR2 0x0 0x7 0x0
+WM_CLEARPORTRAIT 0x0 0x100 0x0
+STAL 32
+
+// segment 3: the Gray Sea
+WM_MOVECAM2 0x0 0x0 0x18 0x60 0x18 0x3C 0x0
+STAL 60
+TEXTCONT
+TEXTEND
+STAL 30
+
+// segment 4: the singing reaches the shore
+TEXTCONT
+TEXTEND
+STAL 30
+WM_REMOVETEXT
+STAL 2
+FADI 16
+SKIPWN
+WM_FXCLEAR1 0x0 0xFFFF 0xFFFF
+WM_FXCLEAR2 0x0 0xFFFF 0xFFFF
+ENDA

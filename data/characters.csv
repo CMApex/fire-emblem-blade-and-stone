@@ -1,0 +1,6 @@
+id,label,Name,Description,Support Class,Portrait,Affinity,Lv,HP,Atk,Skl,Spd,Def,Res,Luck,Con,Sword,Lance,Axe,Bow,Staff,Anima,Light,Dark,HP Growth,Atk Growth,Skl Growth,Spd Growth,Def Growth,Res Growth,Luck Growth,CharClassAbility
+0x01,Eirika,,,0x4,,,1,12,8,12,13,3,9,14,0,BRank,,,ERank,,,,,,,,,,,,
+0x02,Seth,,,0x7,,,8,13,8,11,7,4,6,11,0,ARank,ARank,,,,,,,,,,,,,,
+0x10,Forde,,,0x7,,,1,8,5,8,5,2,2,9,0,CRank,BRank,,,,,,,,,,,,,,
+0x11,Kyle,,,0x35,,,1,12,6,6,3,4,1,6,0,CRank,BRank,ERank,,,,,,,,,,,,,
+0x55,Drowned Knight,BS_DrownedName,BS_DrownedDesc,0x56,0x0,NoAffinity,4,8,3,2,0,3,0,0,0,CRank,,,CRank,,,,,90,40,40,30,30,10,0,0x0

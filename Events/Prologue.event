@@ -1,0 +1,197 @@
+// ============================================================
+//  Blade & Stone — Prologue: The Year After
+//  Map: Merrow Point, southern Renais coast (20x15, plains tileset)
+// ============================================================
+
+#define BS_CH_PROLOGUE 0x00
+#define BS_DrownedKnight 0x55     // repurposed unused character slot
+#define BS_Monster 0xAA            // generic monster character
+
+// ---------- chapter data overrides ----------
+PUSH
+  ORG ChapterDataTable + (BS_CH_PROLOGUE * ChapterDataTableEntSize)
+  // tileset stays vanilla plains (obj 1/0, pal 2, config 3), map slot 4, map changes slot 6
+  ORG ChapterDataTable + (BS_CH_PROLOGUE * ChapterDataTableEntSize) + 22
+    SHORT 0x0B      // player phase: Follow Me
+    SHORT 0x13      // enemy phase: Shadow of the Enemy
+  ORG ChapterDataTable + (BS_CH_PROLOGUE * ChapterDataTableEntSize) + 112
+    SHORT BS_Ch0Name BS_Ch0Name
+  ORG ChapterDataTable + (BS_CH_PROLOGUE * ChapterDataTableEntSize) + 136
+    SHORT BS_Ch0Goal BS_Ch0Goal
+POP
+
+ALIGN 4
+BS_PrologueMap:
+  #incbin "../Maps/bs_prologue_data.dmp"
+EventPointerTable(0x04, BS_PrologueMap)
+
+ALIGN 4
+BS_P_VillageClosed:
+  SHORT 0x80                 // metatile 0x20 (closed village gate) << 2
+ALIGN 4
+BS_P_MapChanges:
+  TileMap(0, 18, 12, 1, 1, BS_P_VillageClosed)
+  TileMapEnd
+EventPointerTable(0x06, BS_P_MapChanges)
+
+// ---------- event pointer list ----------
+EventPointerTable(0x07, BS_P_PointerList)
+
+ALIGN 4
+BS_P_PointerList:
+POIN BS_P_Turn BS_P_Talk BS_P_Location BS_P_Misc
+POIN BS_P_Dunno BS_P_Dunno BS_P_Dunno BS_P_Tutorial
+POIN BS_P_Traps BS_P_Traps
+POIN BS_P_Party BS_P_Party
+POIN 0 0 0
+POIN 0 0 0
+POIN BS_P_Beginning BS_P_Ending
+
+BS_P_Turn:
+  TurnEventPlayer(0, BS_P_Turn2Warn, 2)
+  TurnEventEnemy(0, BS_P_Reinforce1, 3)
+  TurnEventPlayer(0, BS_P_Turn4Warn, 4)
+  TurnEventEnemy(0, BS_P_Reinforce2, 5)
+  END_MAIN
+
+BS_P_Talk:
+  END_MAIN
+
+BS_P_Location:
+  Village(0x10, BS_P_VillageEvent, 18, 12)
+  House(0x11, BS_P_HouseEvent, 14, 13)
+  Seize(11, 2)
+  END_MAIN
+
+BS_P_Misc:
+  CauseGameOverIfLordDies
+  END_MAIN
+
+BS_P_Dunno:
+  END_MAIN
+BS_P_Tutorial:
+  END_MAIN
+
+BS_P_Traps:
+  ENDTRAP
+  ALIGN 4
+
+// ---------- units ----------
+BS_P_Party:
+#ifdef BS_DEBUG_SEIZE
+UNIT Eirika 0x04 0x00 Level(1, Ally, False)  [11,4]  0b 0x0 0x0 0x0 [Rapier, Vulnerary, 0, 0] NoAI
+#else
+UNIT Eirika 0x04 0x00 Level(1, Ally, False)  [18,13] 0b 0x0 0x0 0x0 [Rapier, Vulnerary, 0, 0] NoAI
+#endif
+UNIT Seth   0x07 0x00 Level(8, Ally, False)  [17,13] 0b 0x0 0x0 0x0 [SteelLance, SteelSword, 0, 0] NoAI
+UNIT Forde  0x07 0x00 Level(1, Ally, False)  [19,13] 0b 0x0 0x0 0x0 [IronSword, Javelin, Vulnerary, 0] NoAI
+UNIT Kyle   0x35 0x00 Level(1, Ally, False)  [18,14] 0b 0x0 0x0 0x0 [SteelLance, Javelin, 0, 0] NoAI
+UNIT
+
+BS_P_Enemies:
+#ifndef BS_DEBUG_SEIZE
+UNIT BS_DrownedKnight 0x56 0x00 Level(4, Enemy, True) [11,2]  0b 0x0 0x0 0x0 [SteelSword, Vulnerary, 0, 0] NeverMoveAI
+#endif
+UNIT BS_Monster 0x5F 0x00 Level(5, Enemy, True) [10,5]  0b 0x0 0x0 0x0 [EvilEye, 0, 0, 0] AttackInRangeAI
+UNIT BS_Monster 0x52 0x00 Level(6, Enemy, True) [6,5]   0b 0x0 0x0 0x0 [RottenClaw, 0, 0, 0] DefaultAI
+UNIT BS_Monster 0x52 0x00 Level(6, Enemy, True) [3,6]   0b 0x0 0x0 0x0 [RottenClaw, 0, 0, 0] DefaultAI
+UNIT BS_Monster 0x52 0x00 Level(7, Enemy, True) [8,7]   0b 0x0 0x0 0x0 [RottenClaw, 0, 0, 0] DefaultAI
+UNIT BS_Monster 0x54 0x00 Level(6, Enemy, True) [12,6]  0b 0x0 0x0 0x0 [IronSword, 0, 0, 0] AttackInRangeAI
+UNIT BS_Monster 0x54 0x00 Level(6, Enemy, True) [15,5]  0b 0x0 0x0 0x0 [IronLance, 0, 0, 0] AttackInRangeAI
+UNIT BS_Monster 0x5B 0x00 Level(5, Enemy, True) [14,9]  0b 0x0 0x0 0x0 [FetidClaw, 0, 0, 0] DefaultAI
+UNIT BS_Monster 0x58 0x00 Level(5, Enemy, True) [13,11] 0b 0x0 0x0 0x0 [PoisonClaw, 0, 0, 0] DefaultAI
+UNIT
+
+BS_P_Reinf1Units:
+UNIT BS_Monster 0x52 0x00 Level(7, Enemy, True) [1,5]   0b 0x0 0x0 0x0 [RottenClaw, 0, 0, 0] DefaultAI
+UNIT BS_Monster 0x52 0x00 Level(7, Enemy, True) [1,8]   0b 0x0 0x0 0x0 [RottenClaw, 0, 0, 0] DefaultAI
+UNIT
+
+BS_P_Reinf2Units:
+UNIT BS_Monster 0x63 0x00 Level(6, Enemy, True) [5,1]   0b 0x0 0x0 0x0 [IronLance, 0, 0, 0] DefaultAI
+UNIT BS_Monster 0x63 0x00 Level(6, Enemy, True) [4,10]  0b 0x0 0x0 0x0 [Javelin, 0, 0, 0] DefaultAI
+UNIT
+
+// ---------- scenes ----------
+BS_P_Beginning:
+  LOAD1 0x1 BS_P_Party
+  ENUN
+  CAM1 [17,12]
+  MUSC 0x05                 // Treasured Memories
+  FADU 16
+  STAL 30
+  Text(BS_P_Opening)
+  MUSCFAST 0x7FFF
+  STAL 30
+  EARTHQUAKE_START 0x0
+  STAL 60
+  EARTHQUAKE_END
+  MUSC 0x11                 // Shadows Approach
+  Text(BS_P_Tremor)
+  CAM1 [10,3]
+  STAL 30
+  LOAD1 0x1 BS_P_Enemies
+  ENUN
+  STAL 45
+  CAM1 [17,12]
+  Text(BS_P_Monsters)
+  NoFade
+  ENDA
+
+BS_P_Turn2Warn:
+  CUMO [1,6]
+  STAL 40
+  CURE
+  Text(BS_P_Turn2)
+  NoFade
+  ENDA
+
+BS_P_Reinforce1:
+  CAM1 [1,6]
+  LOAD1 0x1 BS_P_Reinf1Units
+  ENUN
+  NoFade
+  ENDA
+
+BS_P_Turn4Warn:
+  CUMO [4,5]
+  STAL 40
+  CURE
+  Text(BS_P_Turn4)
+  NoFade
+  ENDA
+
+BS_P_Reinforce2:
+  CAM1 [4,5]
+  LOAD1 0x1 BS_P_Reinf2Units
+  ENUN
+  NoFade
+  ENDA
+
+BS_P_VillageEvent:
+  VillageEventItem(BS_P_Village, 0x02, Elixir)
+
+BS_P_HouseEvent:
+  HouseEvent(BS_P_House, 0x00)
+
+BS_P_Ending:
+  MUSC 0x2F                 // Lights in the Dark
+  Text(BS_P_Ending1)
+  SetBackground(0x07)       // port / shoreline
+  TEXTSHOW BS_P_Ending2
+  TEXTEND
+  REMA
+  SetBackground(0x07)
+  TEXTSHOW BS_P_Ending3
+  TEXTEND
+  REMA
+  MUSC 0x30                 // Comrades
+  SetBackground(0x1F)       // plains at sunset
+  TEXTSHOW BS_P_End
+  TEXTEND
+  FADI 16
+  REMA
+  EVBIT_F 0x2
+  MNTS 0x1                  // back to title (Chapter 1 not built yet)
+  NoFade
+  ENDA
