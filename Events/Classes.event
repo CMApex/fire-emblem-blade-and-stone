@@ -1,0 +1,7 @@
+// Blade & Stone — moving map sprites for cloned classes (gMuInfoTable @ 0x89A2E00, indexed by class-1)
+PUSH
+  ORG 0x9A2E00 + (0x77 - 1) * 8      // Knight Lord  <- Paladin
+    WORD 0x081C6A84 0x081C7428
+  ORG 0x9A2E00 + (0x78 - 1) * 8      // Great Lord (Hector) <- General
+    WORD 0x081C7FCC 0x081C8A80
+POP

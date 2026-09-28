@@ -16,6 +16,8 @@ CLASSES = {
     '~': {"Sea"}, 's': {"Sand"}, 'r': {"Road"}, 'w': {"River"}, 'c': {"Cliff"}, 'l': {"Lake"},
     '=': {"Bridge", "Bridge2"}, '#': {"Ruins", "Rubble", "WallDmg", "Wall"},
     'F': {"Fort"}, 'H': {"House"}, 'V': {"Village"}, 'G': {"Gate"}, 'A': {"Armory"}, 'E': {"Vendor"},
+    'x': {"Fence"}, 'W': {"Wall"}, '_': {"Floor"}, 'T': {"T2E", "T2C"}, 'b': {"Barrel"}, 'd': {"Deck"},
+    'g': {"Gunnels"}, 'S': {"Stairs"}, 'C': {"ChestF"}, 'D': {"Door"},
 }
 TID = {n: i for i, n in enumerate(TERRAIN)}
 
@@ -413,11 +415,21 @@ def beam(model, rows, pins=None, stamps=(), seed=0, width=300, noise=0.6, freqw=
                     ns = score + cell[t] + rng.random() * noise
                     nxt.append((ns, tiles + (t,)))
                     added += 1
-                if not added and left is not None and up is not None:
-                    # seam fallback: satisfy one of the two constraints, pay a penalty
-                    for t in (model.H[left] | model.V[up]):
-                        if t in cell:
-                            nxt.append((score + cell[t] + 15.0 + rng.random() * noise, tiles + (t,)))
+                if not added:
+                    # seam fallback: every constraint becomes soft; keep the least-violating tiles
+                    pr = pins.get((x + 1, y)); pd = pins.get((x, y + 1))
+                    opts = []
+                    for t, c in cell.items():
+                        v = 0
+                        if left is not None and t not in model.H[left]: v += 1
+                        if up is not None and t not in model.V[up]: v += 1
+                        if pr is not None and pr not in model.H[t]: v += 1
+                        if pd is not None and pd not in model.V[t]: v += 1
+                        opts.append((v, c, t))
+                    mv = min(o[0] for o in opts)
+                    for v, c, t in opts:
+                        if v == mv:
+                            nxt.append((score + c + 15.0 * v + rng.random() * noise, tiles + (t,)))
             if not nxt:
                 raise RuntimeError("beam died at %d,%d" % (x, y))
             if len(nxt) > width:

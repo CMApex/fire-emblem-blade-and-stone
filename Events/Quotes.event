@@ -1,0 +1,31 @@
+// Blade & Stone — repointed death-quote and battle-quote tables.
+// Our entries come first (first match wins), then vanilla global entries (extracted at build time).
+
+#define DefeatTalk(pid, chapter, flag, msg) "SHORT pid; BYTE 0xFF chapter; SHORT flag msg; WORD 0"
+#define BattleTalk(pidA, pidB, chapter, flag, msg) "SHORT pidA pidB chapter flag msg 0; WORD 0"
+
+PUSH
+  ORG 0x8472C
+    POIN BS_DefeatTalkList
+  ORG 0x846AC
+    POIN BS_BattleTalkList
+POP
+
+ALIGN 4
+BS_DefeatTalkList:
+  // lords: death = game over (flag 0x65)
+  DefeatTalk(0x2E, 0xFF, 0x65, BS_Death_Hector)
+  DefeatTalk(0x2D, 0xFF, 0x65, BS_Death_Eliwood)
+  DefeatTalk(0x2F, 0xFF, 0x00, BS_Death_Oswin)
+  DefeatTalk(0x30, 0xFF, 0x00, BS_Death_Matthew)
+  DefeatTalk(0x31, 0xFF, 0x00, BS_Death_Serra)
+  // bosses: flag 2 = "boss defeated"
+  DefeatTalk(0x59, 0x01, 0x02, 0)     // Hollow Captain, Ch1
+  DefeatTalk(0x55, 0x00, 0x02, 0)     // Drowned Knight, Prologue
+  #incbin "../build/vanilla_defeat.bin"
+
+ALIGN 4
+BS_BattleTalkList:
+  BattleTalk(0x2E, 0x59, 0x01, 0x20, BS_C1_Boss)      // Hector vs Hollow Captain
+  BattleTalk(0x01, 0x55, 0x00, 0x20, BS_P_BossBattle) // Eirika vs Drowned Knight
+  #incbin "../build/vanilla_battle.bin"

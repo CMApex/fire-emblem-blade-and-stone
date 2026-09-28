@@ -1,0 +1,48 @@
+// Blade & Stone — character & class names/descriptions
+
+## BS_Name_Eliwood
+Eliwood[X]
+## BS_Desc_Eliwood
+Marquess of Pherae. Gentle,[N]
+and braver than he looks.[X]
+## BS_Name_Hector
+Hector[X]
+## BS_Desc_Hector
+Marquess of Ostia. Swings[N]
+first, reads reports later.[X]
+## BS_Name_Oswin
+Oswin[X]
+## BS_Desc_Oswin
+Ostia's stalwart knight.[N]
+Speaks rarely, errs never.[X]
+## BS_Name_Matthew
+Matthew[X]
+## BS_Desc_Matthew
+Ostian spy. Always smiling.[N]
+Not always happy.[X]
+## BS_Name_Serra
+Serra[X]
+## BS_Desc_Serra
+A cleric of Ostia who is[N]
+never, ever wrong.[X]
+## BS_Name_Husk
+Husk[X]
+## BS_Desc_Husk
+A drowned body that walks.[N]
+Nothing behind its eyes.[X]
+## BS_Name_HollowCaptain
+Hollow Captain[X]
+## BS_Desc_HollowCaptain
+It still stands its watch.[N]
+It doesn't know it's dead.[X]
+
+## BS_ClassKnightLord
+Knight Lord[X]
+## BS_ClassKnightLordDesc
+A mounted lord of Lycia.[N]
+Wields swords and lances.[X]
+## BS_ClassGreatLordH
+Great Lord[X]
+## BS_ClassGreatLordHDesc
+An armored lord of Lycia.[N]
+Wields axes and swords.[X]

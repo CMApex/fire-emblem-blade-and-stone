@@ -14,7 +14,9 @@ Learned  [X]
 
 #include "statscreen_text.txt"
 
+#include "blade/characters.txt"
 #include "blade/prologue.txt"
+#include "blade/ch1.txt"
 
 
 

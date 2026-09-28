@@ -1,0 +1,117 @@
+// ============================================================
+//  Blade & Stone — Chapter 1: The Marquess's Docks (Ostia)
+// ============================================================
+
+## BS_Ch1Name
+Chapter 1: The Marquess's Docks[X]
+
+## BS_Ch1Goal
+Defeat boss[X]
+
+## BS_C1_Opening
+[OpenMidRight][LoadOswin][OpenMidLeft][LoadHector][OpenMidRight]Lord Hector. The grain tariffs.[NL]
+The envoy from Laus.[.][A][NL]
+The harbor master's report.[NL]
+And the petitions.[A][OpenMidLeft]You said the petitions already.[A][OpenMidRight]There are a great many petitions,[NL]
+my lord.[.][A][OpenMidLeft]Oswin, it's been a year. When does[NL]
+being marquess stop being paperwork?[A][OpenMidRight]Lord Uther said it never does.[.][A][OpenMidLeft][ToggleMouthMove]...[.][ToggleMouthMove]Yeah.[.][NL]
+He would have.[.][A][OpenFarRight][LoadMatthew][OpenFarRight]Morning, my lord! Good news and[NL]
+bad news. Which first?[A][OpenMidLeft]Bad.[A][OpenFarRight]The harbor master's report is real.[A][NL]
+The dockhands say dead men are walking[NL]
+up out of the water. Gray skin.[.][A][NL]
+Black eyes. They don't talk. They[NL]
+don't bleed.[.][A][OpenMidRight]Morphs? Nergal is dead, my lord.[NL]
+We saw to it ourselves.[.][A][OpenFarRight]That's the thing. Morphs took orders.[NL]
+These ones are just... walking.[.][A][OpenMidLeft]And the good news?[A][OpenFarRight]You finally get to hit something.[A][OpenMidLeft]Oswin. My axe.[A][OpenFarLeft][LoadSerra][OpenFarLeft]Lord Hector! I heard everything![A][NL]
+You'll need a healer, obviously, and[NL]
+someone to supervise you, obviously![A][OpenMidLeft]Serra. How did you get in here?[A][OpenFarLeft]Through the door! I'm a cleric,[NL]
+not a ghost.[.][A][OpenFarRight]Could've fooled me, with how quietly[NL]
+you eavesdrop.[.][A][OpenFarLeft]Matthew![A][OpenMidLeft]Fine. All of you. We're going.[X]
+
+## BS_C1_MapOpen
+[OpenMidLeft][LoadHector][OpenMidRight][LoadMatthew][OpenMidLeft]Look at their eyes. Empty.[.][NL]
+Like the Morphs on the Dread Isle.[A][OpenMidRight]That ship wasn't here last night,[NL]
+my lord. No flag. No crew.[.][A][NL]
+Well. No living crew.[A][OpenFarLeft][LoadOswin][OpenFarLeft]They are moving toward the city.[A][OpenMidLeft]Not past me, they aren't.[.][A][OpenFarRight][LoadSerra][OpenFarRight]Everyone stay close to me![.][NL]
+I can't heal you from across Ostia![A][X]
+
+## BS_C1_Turn2
+[OpenMidRight][LoadMatthew][OpenMidRight]My lord, the other ship.[.][NL]
+Something's moving in the hold.[.][A][NL]
+Lots of somethings.[.][NL]
+They'll be up on deck soon.[.][A][X]
+
+## BS_C1_Eliwood
+[OpenMidRight][LoadEliwood][OpenMidRight]Hector![A][OpenMidLeft][LoadHector][OpenMidLeft]Eliwood?![.] What are you doing in Ostia?[A][OpenMidRight]Pherae's harbor. The same thing.[NL]
+Dead men walking out of the sea.[.][A][NL]
+I rode as soon as I saw them.[.][A][OpenMidLeft]You rode two days to tell me something[NL]
+I found out this morning?[A][OpenMidRight]I rode two days to help, you oaf.[A][OpenMidLeft][ToggleSmile][ToggleMouthMove]...[.][ToggleMouthMove]Then help.[X]
+
+## BS_C1_Talk
+[OpenMidLeft][LoadHector][OpenMidRight][LoadEliwood][OpenMidLeft]How's Ninian?[A][OpenMidRight]She heard it first. Weeks ago.[.][A][NL]
+She said the sea was singing.[.][NL]
+Then she started sleeping more.[.][A][NL]
+And more.[.][A][OpenMidLeft][ToggleMouthMove]...[.][ToggleMouthMove][A][NL]
+When this is done, I'm coming to[NL]
+Pherae.[.] No arguments.[A][OpenMidRight]I wasn't going to argue.[A][OpenMidLeft]You always argue.[A][OpenMidRight][ToggleSmile]Not today.[X]
+
+## BS_C1_HouseW
+[OpenMidLeft][LoadFace][0x59][0x01][OpenMidRight][LoadFace][0xFF][0xFF][OpenMidLeft]My brother drowned off the Dread Isle.[NL]
+Twenty years ago now.[.][A][NL]
+This morning I saw him on the pier.[.][A][NL]
+He didn't know me.[.][NL]
+He didn't know anything.[.][A][0x02][NL]
+Take this. He'd have wanted you[NL]
+to have it. He was a kind man.[.][A][X]
+
+## BS_C1_HouseE
+[OpenMidLeft][LoadFace][0x5E][0x01][OpenMidRight][LoadFace][0xFF][0xFF][OpenMidLeft]Are you gonna smash the ghosts?[A][NL]
+Mama says ghosts can't be smashed.[.][NL]
+I said Lord Hector can smash anything.[A][0x02][NL]
+Here. It's holy water. Mama says it's[NL]
+for emergencies. This is one.[.][A][X]
+
+## BS_C1_Boss
+[OpenMidLeft][LoadHector][OpenMidLeft]You were a sailor once, weren't you?[.][A][NL]
+[ToggleMouthMove]...[.][ToggleMouthMove]I'm sorry.[.][NL]
+Let's get you some rest.[.][A][X]
+
+## BS_C1_Ending
+[OpenMidLeft][LoadHector][OpenMidRight][LoadEliwood][OpenMidLeft]They just... fell apart.[.][NL]
+Like they were made of seawater.[.][A][OpenFarRight][LoadMatthew][OpenFarRight]My lord! The ship's log.[.][NL]
+You'll want to see this.[A][OpenMidLeft]Read it.[A][OpenFarRight]"The Merchant Grace, of Port Kiris.[NL]
+Fourth day: the sea is singing.[.][A][NL]
+Fifth day: the singing is in the hold.[NL]
+Sixth day..."[.] That's where it stops.[A][OpenMidRight]Port Kiris? I've never heard of it.[A][OpenFarLeft][LoadOswin][OpenFarLeft]There is no port by that name on any[NL]
+Lycian chart, my lord.[.][A][NL]
+Nor on any Etrurian one.[.][A][OpenFarRight]The log says it sailed from somewhere[NL]
+called Grado.[.][A][OpenMidLeft]Grado.[.][A][OpenMidRight]Hector. Come back to Pherae with me.[.][NL]
+Ninian might know something.[.][A][NL]
+She always knows more than she says.[A][OpenMidLeft]Then we find a new chart.[.][NL]
+Oswin, Ostia is yours until I'm back.[A][OpenFarLeft][ToggleMouthMove]...[.][ToggleMouthMove]The petitions, my lord?[A][OpenMidLeft]Especially the petitions.[X]
+
+## BS_C1_End
+[OpenMidLeft][LoadHector][OpenMidLeft]That's all for now![.][NL]
+The Prologue and Chapter 1 are done.[A][NL]
+Next: Renais, Ephraim, and a very[NL]
+confused thief named Legault.[.][A][X]
+
+## BS_Death_Hector
+[OpenMidLeft][LoadHector][OpenMidLeft]Damn it... Oswin...[NL]
+Ostia's... yours.[.][A][X]
+
+## BS_Death_Eliwood
+[OpenMidLeft][LoadEliwood][OpenMidLeft]Ninian... I'm sorry...[NL]
+I couldn't... come home.[.][A][X]
+
+## BS_Death_Oswin
+[OpenMidLeft][LoadOswin][OpenMidLeft]Forgive me, Lord Hector.[.][NL]
+I can hold... no longer.[.][A][X]
+
+## BS_Death_Matthew
+[OpenMidLeft][LoadMatthew][OpenMidLeft]Ha... Leila, is that you?[.][NL]
+Guess I'm... late again.[.][A][X]
+
+## BS_Death_Serra
+[OpenMidLeft][LoadSerra][OpenMidLeft]This isn't fair...[.][NL]
+I'm supposed to heal... everyone...[.][A][X]

@@ -3,7 +3,7 @@
 An FE8 (Sacred Stones) buildfile hack that brings the full casts of FE7 and FE8 together in one original story.
 Story and design live in [`docs/bible.md`](docs/bible.md).
 
-**Status:** Prologue ("The Year After") is playable end to end: world map narration, a new map, events, a village and a house, reinforcements, a seize, and an ending that introduces the first FE7 character.
+**Status:** Prologue ("The Year After", Renais) and Chapter 1 ("The Marquess's Docks", Ostia) are playable back to back. Hector, Oswin, Matthew, Serra and Eliwood join with ported FE7 portraits, new Knight Lord and Great Lord classes, boss quotes, and death quotes (a lord's death means game over).
 
 ## Playing
 
@@ -22,7 +22,7 @@ cp /path/to/FE7U.gba roms/fe7u.gba     # clean Fire Emblem (USA) — FE7 portrai
 python3 tools/ups.py make roms/fe8u.gba build/BladeAndStone.gba build/BladeAndStone.ups
 ```
 
-Debug builds: `BS_DEFINES="BS_DEBUG_SEIZE" BS_OUT=debug_seize ./build.sh` (starts Eirika next to the chapel).
+Debug builds: `BS_DEFINES="BS_DEBUG_SEIZE BS_DEBUG_CH1" BS_OUT=debug ./build.sh`. BS_DEBUG_SEIZE starts Eirika next to the chapel; BS_DEBUG_CH1 puts Hector beside a weakened Hollow Captain.
 
 No ROM data is committed. Everything under `build/` is derived from the ROMs you supply.
 
@@ -33,6 +33,10 @@ No ROM data is committed. Everything under `build/` is derived from the ROMs you
 | `docs/bible.md` | story bible: premise, tone, cast, act and chapter plan |
 | `Events/BladeAndStone.event` | chapter installer (world map + chapters) |
 | `Events/Prologue.event`, `Events/WM_Prologue.event` | Prologue events and world map narration |
+| `Events/Ch1.event` | Chapter 1 (Ostia) |
+| `Events/Quotes.event` | repointed death/battle quote tables (our entries first) |
+| `Events/Classes.event` | moving-sprite entries for cloned classes |
+| `data/classes.csv` | class clones/overrides (applied by `tools/patch_classes.py`) |
 | `Text/blade/*.txt` | all Blade & Stone script text |
 | `maps_src/*.sketch` | map sketches (terrain ASCII + stamps from vanilla maps) |
 | `maps_src/*.json` | solved maps (metatile grids) |

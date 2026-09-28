@@ -4,3 +4,10 @@ id,label,Name,Description,Support Class,Portrait,Affinity,Lv,HP,Atk,Skl,Spd,Def,
 0x10,Forde,,,0x7,,,1,8,5,8,5,2,2,9,0,CRank,BRank,,,,,,,,,,,,,,
 0x11,Kyle,,,0x35,,,1,12,6,6,3,4,1,6,0,CRank,BRank,ERank,,,,,,,,,,,,,
 0x55,Drowned Knight,BS_DrownedName,BS_DrownedDesc,0x56,0x0,NoAffinity,4,8,3,2,0,3,0,0,0,CRank,,,CRank,,,,,90,40,40,30,30,10,0,0x0
+0x2D,Eliwood,BS_Name_Eliwood,BS_Desc_Eliwood,0x77,BS_FACE_ELIWOOD,AnimaAffinity,1,9,6,9,6,2,4,11,0,ARank,CRank,NoRank,NoRank,NoRank,NoRank,NoRank,NoRank,80,45,50,40,30,35,45,0x0
+0x2E,Hector,BS_Name_Hector,BS_Desc_Hector,0x78,BS_FACE_HECTOR,ThunderAffinity,1,12,6,6,6,1,2,8,0,CRank,NoRank,ARank,NoRank,NoRank,NoRank,NoRank,NoRank,90,60,45,35,50,25,30,0x0
+0x2F,Oswin,BS_Name_Oswin,BS_Desc_Oswin,0x0B,BS_FACE_OSWIN,AnimaAffinity,5,14,6,6,3,4,1,5,0,NoRank,ARank,CRank,NoRank,NoRank,NoRank,NoRank,NoRank,90,40,30,30,55,30,35,0x0
+0x30,Matthew,BS_Name_Matthew,BS_Desc_Matthew,0x33,BS_FACE_MATTHEW,FireAffinity,1,12,6,14,8,4,4,12,0,BRank,NoRank,NoRank,NoRank,NoRank,NoRank,NoRank,NoRank,75,30,40,70,25,20,50,0x0
+0x31,Serra,BS_Name_Serra,BS_Desc_Serra,0x2C,BS_FACE_SERRA,ThunderAffinity,1,4,7,4,7,2,4,14,0,NoRank,NoRank,NoRank,NoRank,BRank,NoRank,DRank,NoRank,50,50,30,40,15,55,60,IsFemale
+0x58,Husk,BS_Name_Husk,BS_Desc_Husk,0x3F,0x0,NoAffinity,1,0,0,0,0,0,0,0,0,,,,,,,,,60,30,30,30,20,10,20,0x0
+0x59,Hollow Captain,BS_Name_HollowCaptain,BS_Desc_HollowCaptain,0x42,0x0,NoAffinity,5,6,3,3,2,3,1,0,0,,,CRank,,,,,,70,40,35,30,30,15,25,0x0

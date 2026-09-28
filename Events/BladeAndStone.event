@@ -1,8 +1,13 @@
 #include "../build/BuildConfig.event"
 // Blade & Stone — chapter & world map installer
+#include "Classes.event"
+#include "Quotes.event"
 {
   #include "WM_Prologue.event"
 }
 {
   #include "Prologue.event"
+}
+{
+  #include "Ch1.event"
 }

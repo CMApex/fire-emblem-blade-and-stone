@@ -185,13 +185,8 @@ BS_P_Ending:
   TEXTSHOW BS_P_Ending3
   TEXTEND
   REMA
-  MUSC 0x30                 // Comrades
-  SetBackground(0x1F)       // plains at sunset
-  TEXTSHOW BS_P_End
-  TEXTEND
   FADI 16
   REMA
-  EVBIT_F 0x2
-  MNTS 0x1                  // back to title (Chapter 1 not built yet)
+  MNC2 0x1                  // on to Chapter 1: Ostia
   NoFade
   ENDA
