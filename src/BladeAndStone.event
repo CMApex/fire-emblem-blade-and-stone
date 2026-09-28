@@ -1,0 +1,32 @@
+// ============================================================
+//  Fire Emblem: Blade & Stone — content root
+//  Included by the C-SkillSys main.event at FreeSpaceDEMO (see overlay/main.event).
+// ============================================================
+#include "gen/BuildConfig.event"
+
+#define ChapterDataTable 0x8B0890
+#define ChapterDataTableEntSize 148
+#include "gen/BsMsgs.event"          // text IDs (tools/gentext.py)
+#include "gen/CastDefs.event"        // BS_PID_* / BS_LV_* / BS_CLASS_* (tools/gencast.py)
+#include "gen/FE7FaceDefs.event"     // BS_FACE_* (tools/import_fe7_faces.py)
+
+// ---- engine-level changes ----
+#include "Hacks/Core/Core.event"
+
+// ---- data ----
+#include "gen/FE7Faces.event"
+#include "gen/Characters.event"
+#include "gen/Classes.event"
+#include "Data/Leaders.event"
+#include "Events/Quotes.event"
+
+// ---- chapters ----
+{
+  #include "Events/WM_Prologue.event"
+}
+{
+  #include "Events/Prologue.event"
+}
+{
+  #include "Events/Ch1.event"
+}

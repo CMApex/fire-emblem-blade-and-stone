@@ -1,0 +1,4 @@
+pid,key,name,desc,class,face,level,hp,str,mag,skl,spd,lck,def,res,con,ranks,growths,attrs,notes
+0x60,DrownedKnight,BS_DrownedName,BS_DrownedDesc,0x56,0x0,4,8,3,0,2,0,0,3,0,0,Sword:C Bow:C,90/40/5/40/30/0/30/10,boss,Prologue boss
+0x61,HollowCaptain,BS_Name_HollowCaptain,BS_Desc_HollowCaptain,0x42,0x0,5,6,3,0,3,2,0,3,1,0,Axe:C,70/40/5/35/30/25/30/15,boss,Ch1 boss
+0x7F,Husk,BS_Name_Husk,BS_Desc_Husk,0x3F,0x0,1,0,0,0,0,0,0,0,0,0,,60/30/5/30/30/20/20/10,,generic hollowed enemy

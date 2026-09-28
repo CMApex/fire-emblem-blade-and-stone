@@ -7,3 +7,6 @@ build/
 FE8_clean.sym
 SkillsTest.*
 __pycache__/
+engine/
+gen/
+.colorzcore/

@@ -22,21 +22,38 @@ def deployed(cid): return any(u['cid']==cid and not (u['state']&0xD) and u['x']<
 if stage=='boot':
     for l in open('/home/claude/work/tools/newgame.txt'):
         if l.strip(): g.cmd(l.strip())
-    advance_until(lambda: deployed(0x01) and g.turn()==(1,0) and P.is_idle(), 'intro')
+    n=0
+    for i in range(1500):
+        if P.is_dialog():
+            if n%1==0: g.shot('intro dlg%d'%n)
+            n+=1; g.press('A',50); continue
+        if any(u['x']<0x40 for u in g.units('blue')):
+            if g.turn()==(1,0) and P.is_idle(): break
+            g.wait(40); continue            # never press A once units are on the map
+        if i%10==0: g.shot('intro i%d'%i)
+        g.press('A',40)
     g.save(S+'run_p1.ss'); g.sheet(OUT+'01_intro.png',cols=6)
 elif stage=='p1':
-    g.move_cursor(18,13); g.press('A',25); g.move_cursor(18,12); g.press('A',30); g.shot('visit menu'); g.press('A',40); P.settle('visit')
+    g.move_cursor(18,13); g.press('A',40); g.move_cursor(18,12); g.press('A',55); g.shot('visit menu'); g.press('A',45); P.settle('visit')
     r=play(g,P,[1,2,0x10,0x11],1,seize=(11,2),boss_pos=(11,2),lord_goal=(11,2),tag='P')
     print('prologue result',r,g.turn())
     g.save(S+'run_pend.ss'); g.sheet(OUT+'02_prologue.png',cols=6)
 elif stage=='pend':
-    advance_until(lambda: deployed(0x2E) and g.turn()==(1,0) and P.is_idle(), 'toch1')
-    print('cursor at ch1 start', g.cursor(), 'hector', [(u['x'],u['y']) for u in g.units('blue') if u['cid']==0x2E])
+    n=0
+    for i in range(1500):
+        if P.is_dialog():
+            g.shot('toch1 dlg%d'%n); n+=1; g.press('A',50); continue
+        if any(u['cid']==0x24 and u['x']<0x40 for u in g.units('blue')):
+            if g.turn()==(1,0) and P.is_idle(): break
+            g.wait(40); continue            # never mash A once Chapter 1 units are on the map
+        if i%10==0: g.shot('toch1 i%d'%i)
+        g.press('A',40)
+    print('cursor at ch1 start', g.cursor(), 'hector', [(u['x'],u['y']) for u in g.units('blue') if u['cid']==0x24])
     for k in range(3): g.wait(10); g.shot('ch1 start cursor f%d'%k)
     g.save(S+'run_c1.ss'); g.sheet(OUT+'03_to_ch1.png',cols=6)
 elif stage=='c1':
-    plans={0x30:{'visit':(3,3)}, 0x31:{'visit':(17,3)}, 0x2D:{'talk':0x2E}}
-    r=play(g,P,[0x30,0x31,0x2E,0x2F,0x2D],0x2E,boss_pos=(6,19),lord_goal=(6,18),tag='C1',plans=plans,max_turns=25,
+    plans={0x27:{'visit':(3,3)}, 0x28:{'visit':(17,3)}, 0x23:{'talk':0x24}}
+    r=play(g,P,[0x27,0x28,0x24,0x26,0x23],0x24,boss_pos=(6,19),lord_goal=(6,18),tag='C1',plans=plans,max_turns=25,
            done_check=lambda: P.is_dialog() and not any((r['x'],r['y'])==(6,19) for r in live(g,'red')))
     print('ch1 result',r,g.turn())
     g.save(S+'run_c1end.ss'); g.sheet(OUT+'04_ch1.png',cols=6)

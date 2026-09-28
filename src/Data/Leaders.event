@@ -1,0 +1,7 @@
+// Player leader per chapter index (read by GetPlayerLeaderUnitId in src/Hacks/Core/Core.c).
+// 0 = default (Eirika). If the leader isn't deployed, the first living blue unit is used.
+ALIGN 4
+gBsLeaderTable:
+  BYTE BS_PID_EIRIKA     // 0x00 Prologue
+  BYTE BS_PID_HECTOR     // 0x01 Chapter 1
+  FILL (0x100 - 2)

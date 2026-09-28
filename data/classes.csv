@@ -1,3 +1,0 @@
-id,clone_from,label,Name,Description,CharClassAbility
-0x77,0x07,Knight Lord,BS_ClassKnightLord,BS_ClassKnightLordDesc,MountedAid|HasCanto|HorseIcon|IsPromoted|IsLord
-0x78,0x0B,Great Lord (Hector),BS_ClassGreatLordH,BS_ClassGreatLordHDesc,IsPromoted|IsLord

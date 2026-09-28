@@ -1,0 +1,77 @@
+pid,key,tier,game,src,class,level,skill,ranks,notes
+0x01,Eirika,core,fe8,0x01,0x04,3,Charisma,Sword:A,Great Lord (F)
+0x02,Seth,core,fe8,0x02,0x07,6,Loyalty,Sword:A Lance:A,
+0x03,Gilliam,core,fe8,0x03,0x0B,3,StanceSteady,Lance:A Axe:C,garrison after Ch.2
+0x04,Franz,core,fe8,0x04,0x07,2,KnightAspirant,Sword:B Lance:B,
+0x05,Moulder,core,fe8,0x05,0x2B,3,StaffSavant,Staff:A Light:C,
+0x06,Vanessa,core,fe8,0x06,0x49,3,Perfectionist,Lance:A Sword:C,
+0x07,Ross,core,fe8,0x07,0x3F,4,QuickLearner,Axe:C,growing
+0x08,Neimi,core,fe8,0x08,0x1C,2,Patience,Bow:A,
+0x09,Colm,core,fe8,0x09,0x33,3,Pickup,Sword:A,
+0x0A,Nino,core,fe7,0x14,0x26,8,Paragon,Anima:B,growing
+0x0B,Innes,core,fe8,0x0B,0x1B,4,Vanity,Bow:S,
+0x0C,Lute,core,fe8,0x0C,0x28,3,Focus,Anima:A Staff:C,
+0x0D,Jaffar,core,fe7,0x24,0x17,5,Lethality,Sword:S,
+0x0E,Cormag,core,fe8,0x0E,0x21,4,Frenzy,Lance:A Axe:C,
+0x0F,Ephraim,core,fe8,0x0F,0x03,3,Charge,Lance:A,Great Lord (M)
+0x10,Forde,core,fe8,0x10,0x07,3,AlertStance,Sword:A Lance:C,
+0x11,Kyle,core,fe8,0x11,0x35,3,Pragmatic,Lance:A Sword:C Axe:D,Great Knight
+0x12,Heath,core,fe7,0x20,0x21,4,Opportunist,Lance:A Axe:C,
+0x13,Raven,core,fe7,0x04,0x11,4,Wrath,Sword:A Axe:B,
+0x14,Gerik,core,fe8,0x14,0x11,4,Inspiration,Sword:A Axe:B,
+0x15,Tethys,core,fe8,0x15,0x4D,5,Charm,,dancer
+0x16,Marisa,core,fe8,0x16,0x16,3,FlashingBlade,Sword:A,
+0x17,Saleh,core,fe8,0x17,0x27,5,SlowBurn,Anima:S Staff:B,
+0x18,Ewan,core,fe8,0x18,0x25,3,Aptitude,Anima:C,growing (mage; a year past Pupil)
+0x19,LArachel,core,fe8,0x19,0x4C,3,HolyAura,Light:A Staff:B,
+0x1A,Lucius,core,fe7,0x10,0x2B,4,Peacebringer,Light:A Staff:B,
+0x1B,Priscilla,core,fe7,0x1B,0x4C,3,Amaterasu,Staff:A Anima:C,
+0x1C,Canas,core,fe7,0x16,0x2F,4,SealResistance,Dark:A Staff:C,
+0x1D,Duessel,core,fe8,0x1D,0x35,6,Obstruct,Lance:S Sword:B Axe:B,
+0x1E,Myrrh,core,fe8,0x1E,0x3C,8,DragonWall,,manakete
+0x1F,Knoll,core,fe8,0x1F,0x2F,4,MaleficAura,Dark:A Staff:C,
+0x20,Joshua,core,fe8,0x20,0x15,4,FranticSwing,Sword:A,
+0x21,Erk,core,fe7,0x13,0x27,3,MageSlayer,Anima:A Staff:C,
+0x22,Tana,core,fe8,0x22,0x49,2,SocialButterfly,Lance:B Sword:D,
+0x23,Eliwood,core,fe7,0x01,0x77,3,Chivalry,Sword:A Lance:C,Knight Lord (FE7)
+0x24,Hector,core,fe7,0x02,0x78,3,QuickRiposte,Axe:A Sword:C,Great Lord (FE7)
+0x25,Lyn,core,fe7,0x2D,0x79,3,LawsOfSacae,Sword:A Bow:C,Blade Lord (FE7)
+0x26,Oswin,core,fe7,0x0B,0x0B,4,GuardBearing,Lance:A Axe:C,
+0x27,Matthew,core,fe7,0x23,0x17,3,Pass,Sword:A,
+0x28,Serra,core,fe7,0x11,0x2C,3,StunningSmile,Staff:A Light:C,
+0x29,Rebecca,core,fe7,0x0E,0x1C,3,Forager,Bow:A,
+0x2A,Lowen,core,fe7,0x19,0x07,3,Barricade,Lance:A Sword:C,
+0x2B,Ninian,core,fe7,0x25,0x4D,5,NightTide,,dancer (FE7 anim)
+0x2C,Kent,core,fe7,0x2F,0x07,3,Solidarity,Sword:A Lance:B,
+0x2D,Sain,core,fe7,0x30,0x07,3,QuickBurn,Lance:A Sword:B,
+0x2E,Wil,core,fe7,0x2E,0x1B,3,Camaraderie,Bow:A,
+0x2F,Florina,core,fe7,0x31,0x49,3,Shade,Lance:A Sword:D,
+0x30,Rath,core,fe7,0x32,0x1D,4,OutdoorFighter,Bow:A Sword:C,Ranger (FE7 Nomad Trooper anim)
+0x31,Guy,core,fe7,0x06,0x15,3,Prescience,Sword:A,
+0x32,Legault,core,fe7,0x36,0x17,4,Infiltrator,Sword:A,
+0x33,Garcia,company,fe8,0x0A,0x40,4,StrongRiposte,Axe:A Bow:C,
+0x34,Natasha,company,fe8,0x0D,0x2C,3,VoiceOfPeace,Staff:A Light:C,
+0x35,Amelia,company,fe8,0x12,0x06,4,Discipline,Lance:C Sword:D,growing (cavalier; a year past Recruit)
+0x36,Artur,company,fe8,0x13,0x2B,3,Slayer,Light:A Staff:B,
+0x37,Dozla,company,fe8,0x1A,0x43,5,RecklessFighter,Axe:A,
+0x38,Rennac,company,fe8,0x1C,0x33,4,Shakedown,Sword:A,
+0x39,Syrene,company,fe8,0x21,0x49,5,HoneFlier,Lance:A Sword:C,
+0x3A,Pent,company,fe7,0x15,0x27,6,Gentilhomme,Anima:S Staff:A,
+0x40,Louise,company,fe7,0x0F,0x1C,6,Demoiselle,Bow:S,
+0x41,Marcus,company,fe7,0x1A,0x07,8,BattleVeteran,Sword:A Lance:A,
+0x42,Isadora,company,fe7,0x34,0x08,4,Horseguard,Sword:A Lance:C,
+0x43,Harken,company,fe7,0x38,0x11,6,StanceFierce,Sword:A Axe:B,
+0x44,Karel,company,fe7,0x07,0x15,8,InnerFlame1,Sword:S,
+0x45,Karla,company,fe7,0x37,0x16,6,Bushido,Sword:S,
+0x46,Bartre,company,fe7,0x09,0x40,4,BrashAssault,Axe:A Bow:C,
+0x47,Dorcas,company,fe7,0x08,0x40,4,StanceSturdy,Axe:A Bow:D,
+0x48,Wallace,company,fe7,0x2C,0x0B,6,Sturdy,Lance:A Axe:A,
+0x49,Geitz,company,fe7,0x05,0x40,5,SteadyBrawler,Axe:A Bow:B,
+0x4A,Dart,company,fe7,0x33,0x43,4,SeaWays,Axe:A,
+0x4B,Hawkeye,company,fe7,0x22,0x43,8,Hawkeye,Axe:S,
+0x4C,Renault,company,fe7,0x12,0x2B,8,Imbue,Light:A Staff:A,
+0x4D,Fiora,company,fe7,0x1E,0x49,4,Skyguard,Lance:A Sword:C,
+0x4E,Farina,company,fe7,0x1F,0x49,4,Deal,Lance:A Sword:C,
+0x4F,Vaida,company,fe7,0x21,0x22,8,Intimidate,Lance:S Axe:B,
+0x50,Nils,company,fe7,0x26,0x46,5,WhitePool,,bard (FE7 anim)
+0x51,Athos,company,fe7,0x27,0x27,20,DriveMag,Anima:S Light:S Dark:S Staff:S,Echo (FE7 Archsage anim)

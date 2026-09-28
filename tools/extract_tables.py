@@ -1,8 +1,8 @@
-"""Extract the vanilla FE8 quote tables we extend (global entries only) into build/."""
+"""Extract the vanilla FE8 quote tables we extend (global entries only) into gen/."""
 import os, struct, sys
 ROOT = os.path.normpath(os.path.join(os.path.dirname(__file__), ".."))
 d = open(sys.argv[1], "rb").read()
-out = os.path.join(ROOT, "build")
+out = os.path.join(ROOT, "gen")
 # death quotes: 12-byte entries at 0x9ECD4C; keep chapter==0xFF (global) entries
 o, keep = 0x9ECD4C, bytearray()
 while True:

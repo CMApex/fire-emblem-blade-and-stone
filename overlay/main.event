@@ -1,0 +1,60 @@
+#include "EAstdlib.event"
+#include "Extensions/Hack Installation.txt"
+#include "include/kernel/ProcDefinitions.txt"
+
+#include "include/configs/configs.h"
+#include "include/kernel/CustomDefinitions.event"
+#include "include/kernel/macros.event"
+#include "include/kernel/Definitions.event"
+
+/**
+ * --------------------------------------------------
+ * ---------------- None-secure data ----------------
+ * --------------------------------------------------
+ */
+ORG FreeSpace_MsgTable
+    #include "Preload/AllocMsgTable.event"
+    TextTableEnd:
+
+    /**
+    * <!>
+    * Tool helpers should installed after msg_table repointing
+    */
+    #include "Tools/Tool Helpers.txt"
+ASSERT (FreeSpace_MsgTableEnd - CURRENTOFFSET)
+
+#include "Preload/Magic.event"
+#include "Preload/Reloc.event"
+FreeSpace_RelocTail:
+MESSAGE FreeSpace__Reloc___ end at (CURRENTOFFSET) size as (CURRENTOFFSET - FreeSpace_Reloc) max (UsrRelocSize)
+
+ORG FreeSpace_UsrData
+    #include "Data/Data.event"
+    #include "Debug/Debug.event"
+    #include "Contents/Contents.event"
+FreeSpace_UsrDataTail:
+MESSAGE FreeSpace___Data___ end at (CURRENTOFFSET) size as (CURRENTOFFSET - FreeSpace_UsrData) max (UsrDataSize)
+ASSERT (FreeSpace_UsrDataEnd - CURRENTOFFSET)
+
+ORG FreeSpaceFont
+    #include "Fonts/Fonts.event"
+FreeSpaceFontTail:
+MESSAGE FreeSpace___Font___ end at (CURRENTOFFSET) size as (CURRENTOFFSET - FreeSpaceFont) max (FreeSpaceFontSize)
+ASSERT (FreeSpaceFont + FreeSpaceFontSize - CURRENTOFFSET)
+
+/**
+ * --------------------------------------------------
+ * --------------------- kernel ---------------------
+ * --------------------------------------------------
+ */
+#include "main-kernel.event"
+
+/**
+ * --------------------------------------------------
+ * ---------------------- Demo ----------------------
+ * --------------------------------------------------
+ */
+ORG FreeSpaceDEMO
+    #include "Contents/BladeAndStone/BladeAndStone.event"
+FreeSpaceDEMOTail:
+MESSAGE FreeSpace___DEMO___ end at (CURRENTOFFSET) size as (CURRENTOFFSET - FreeSpaceDEMO)

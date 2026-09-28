@@ -85,8 +85,50 @@ class Player:
         return out
 
     # ---------- actions ----------
+    def arrive(self, cid, tile, maxwait=20):
+        """After confirming a destination: wait until the unit stands there and its menu is up."""
+        for _ in range(maxwait):
+            us = [x for x in self.g.units("blue") if x["cid"] == cid]
+            if us and (us[0]["x"], us[0]["y"]) == tuple(tile):
+                self.g.wait(25)
+                return True
+            self.g.wait(10)
+        return False
+
+    def path_dist(self, u, target):
+        """Dijkstra distance (in move cost) from every tile to target for this unit's class; enemies block."""
+        import heapq, struct as st
+        g = self.g
+        w, h = self.map_size()
+        rows = g.u32(0x0202E4DC)
+        terr = [g.dump(g.u32(rows + 4 * y), w) for y in range(h)]
+        costp = st.unpack("<I", g.dump(u["pclass"] + 0x38, 4))[0]
+        cost = g.dump(costp, 0x41)
+        red = {(r["x"], r["y"]) for r in g.units("red") if not r["hidden"] and not r["dead"] and r["hp"] > 0}
+        INF = 10 ** 9
+        dist = [[INF] * w for _ in range(h)]
+        tx, ty = target
+        dist[ty][tx] = 0
+        pq = [(0, tx, ty)]
+        while pq:
+            d, x, y = heapq.heappop(pq)
+            if d > dist[y][x]:
+                continue
+            for nx, ny in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
+                if 0 <= nx < w and 0 <= ny < h:
+                    c = cost[terr[y][x]]            # cost of stepping onto (x,y) from (nx,ny)
+                    if c == 0xFF or c >= 0x80:
+                        continue
+                    if (x, y) in red and (x, y) != (tx, ty):
+                        continue
+                    nd = d + max(1, c)
+                    if nd < dist[ny][nx]:
+                        dist[ny][nx] = nd
+                        heapq.heappush(pq, (nd, nx, ny))
+        return dist
+
     def select(self, u):
-        self.g.move_cursor(u["x"], u["y"]); self.g.press("A", 25)
+        self.g.move_cursor(u["x"], u["y"]); self.g.press("A", 45)
 
     def cancel(self):
         for _ in range(3): self.g.press("B", 15)
@@ -106,7 +148,7 @@ class Player:
             return any(abs(t[0] - r["x"]) + abs(t[1] - r["y"]) == 1 for r in red)
         # visit a house/village?
         if visit and visit in reach and not enemy_adjacent(visit):
-            g.move_cursor(*visit); g.press("A", 30); g.shot(label + " visit menu"); g.press("A", 40)
+            g.move_cursor(*visit); g.press("A", 10); self.arrive(u["cid"], visit); g.shot(label + " visit menu"); g.press("A", 45)
             self.settle(label + " visit")
             return "visit"
         # talk to someone?
@@ -116,13 +158,13 @@ class Player:
                 tx, ty = tu[0]["x"], tu[0]["y"]
                 spots = [p for p in reach if abs(p[0] - tx) + abs(p[1] - ty) == 1 and not enemy_adjacent(p)]
                 if spots:
-                    g.move_cursor(*spots[0]); g.press("A", 30); g.shot(label + " talk menu")
-                    g.press("A", 30); g.press("A", 40)
+                    g.move_cursor(*spots[0]); g.press("A", 10); self.arrive(u["cid"], spots[0]); g.shot(label + " talk menu")
+                    g.press("A", 45); g.press("A", 45)
                     self.settle(label + " talk")
                     return "talk"
         # seize?
         if seize and seize in reach:
-            g.move_cursor(*seize); g.press("A", 30); g.shot(label + " seize menu"); g.press("A", 40)
+            g.move_cursor(*seize); g.press("A", 10); self.arrive(u["cid"], seize); g.shot(label + " seize menu"); g.press("A", 45)
             return "seize"
         best = None
         if allow_attack:
@@ -134,10 +176,16 @@ class Player:
                             best = (score, (x, y), e)
         if best:
             _, tile, e = best
-            g.move_cursor(*tile); g.press("A", 30)
+            g.move_cursor(*tile); g.press("A", 10); self.arrive(u["cid"], tile)
             g.shot(label + " menu")
-            g.press("A", 30)                     # Attack (top option when a target is in range)
-            g.press("A", 30)                     # first weapon
+            g.press("A", 45)                     # Attack (top option when a target is in range)
+            g.press("A", 60)                     # first weapon
+            reds = {(r["x"], r["y"]) for r in red}
+            for _ in range(3):                   # C-SkillSys can show an extra page (combat arts) before targeting
+                if g.cursor() in reds:
+                    break
+                g.shot(label + " pre-target")
+                g.press("A", 60)
             for _ in range(6):
                 if g.cursor() == (e["x"], e["y"]):
                     break
@@ -154,9 +202,10 @@ class Player:
         if target is None:
             tile = (u["x"], u["y"])
         else:
-            tile = min(reach, key=lambda p: (abs(p[0] - target[0]) + abs(p[1] - target[1]), -mm[p[1]][p[0]]))
-        g.move_cursor(*tile); g.press("A", 30)
-        g.press("UP", 8); g.press("A", 40)     # Wait (last option)
+            dist = self.path_dist(u, target)
+            tile = min(reach, key=lambda p: (dist[p[1]][p[0]], abs(p[0] - target[0]) + abs(p[1] - target[1]), -mm[p[1]][p[0]]))
+        g.move_cursor(*tile); g.press("A", 10); self.arrive(u["cid"], tile)
+        g.press("UP", 12); g.press("A", 45)    # Wait (last option); C-SkillSys menus open a little slower
         self.settle(label + " wait")
         return "move"
 
@@ -165,9 +214,9 @@ class Player:
         w, h = self.map_size()
         occupied = {(u["x"], u["y"]) for s in ("blue", "red", "green") for u in g.units(s) if not u["hidden"]}
         spot = next((x, y) for y in range(h) for x in range(w) if (x, y) not in occupied)
-        g.move_cursor(*spot); g.press("A", 30)
+        g.move_cursor(*spot); g.press("A", 45)
         g.shot(label + " map menu")
-        g.press("UP", 8); g.press("A", 60)
+        g.press("UP", 12); g.press("A", 60)
         t0 = g.turn()[0]
         n = 0
         while True:

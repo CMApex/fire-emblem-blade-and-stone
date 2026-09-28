@@ -1,4 +1,4 @@
-"""Compile maps_src/*.json into Maps/<name>_data.dmp (LZ77) and verify round-trip."""
+"""Compile maps_src/*.json into gen/maps/bs_<name>.dmp (LZ77) and verify round-trip."""
 import json, os, sys, glob
 sys.path.insert(0, os.path.dirname(__file__))
 from fe8lib import encode_map, lz77_compress, lz77_decompress
@@ -12,7 +12,8 @@ def build(name):
     comp = lz77_compress(raw)
     back, _ = lz77_decompress(comp, 0)
     assert back == raw, "LZ77 round-trip failed for " + name
-    out = os.path.join(ROOT, "Maps", "bs_" + name + "_data.dmp")
+    os.makedirs(os.path.join(ROOT, "gen", "maps"), exist_ok=True)
+    out = os.path.join(ROOT, "gen", "maps", "bs_" + name + ".dmp")
     open(out, "wb").write(comp)
     print("map %-10s %dx%d  raw %d -> lz %d bytes" % (name, len(src["grid"][0]), len(src["grid"]), len(raw), len(comp)))
 

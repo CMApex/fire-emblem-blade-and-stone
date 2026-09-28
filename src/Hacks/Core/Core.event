@@ -1,0 +1,4 @@
+// Blade & Stone — core engine changes (see Core.c)
+#include "LynJump.event"
+ALIGN 4
+#include "Core.lyn.event"

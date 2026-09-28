@@ -1,0 +1,5 @@
+// Blade & Stone — text root (compiled by tools/gentext.py)
+#include "characters.txt"
+#include "prologue.txt"
+#include "ch1.txt"
+#include "../../gen/cast_text.txt"
