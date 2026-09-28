@@ -3,7 +3,7 @@
 # Existing Blade & Stone files are never overwritten.
 set -e
 cd "$(dirname "$(readlink -f "$0")")"
-SS_COMMIT=65b959d423f7ae5bc4deaa2e1ae04fbbb9bc1c4b
+SS_COMMIT=65b959d7a16a4c24b8096f33bd79f0195138d423
 if [ ! -d .ss_base ]; then
   git clone -q https://github.com/FireEmblemUniverse/SkillSystem_FE8 .ss_base
 fi
