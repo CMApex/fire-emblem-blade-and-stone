@@ -1,0 +1,8 @@
+wait 300
+press START 120
+press START 120
+press A 90
+press A 90
+press A 90
+press A 120
+wait 600

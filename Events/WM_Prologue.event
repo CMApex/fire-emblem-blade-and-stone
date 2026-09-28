@@ -36,9 +36,7 @@ WM_HIGHLIGHTCLEAR2 0x0 0x7 0x0
 WM_CLEARPORTRAIT 0x0 0x100 0x0
 STAL 32
 
-// segment 3: the Gray Sea
-WM_MOVECAM2 0x0 0x0 0x18 0x60 0x18 0x3C 0x0
-STAL 60
+// segment 3: the Gray Sea (no camera pan: panning east exposes the map edge)
 TEXTCONT
 TEXTEND
 STAL 30

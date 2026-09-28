@@ -1,0 +1,20 @@
+// Blade & Stone: per-chapter player leader (fixes start-of-turn cursor, leader-based events)
+// Rebuild leader.bin: arm-none-eabi-as -mthumb leader.s -o leader.o && arm-none-eabi-objcopy -O binary leader.o leader.bin
+PUSH
+  ORG 0x33258
+    SHORT 0x4B00 0x4718        // ldr r3,[pc,#0]; bx r3
+    POIN BS_GetPlayerLeaderPid+1
+POP
+
+ALIGN 4
+BS_GetPlayerLeaderPid:
+  #incbin "leader.bin"
+  POIN BS_LeaderTable
+
+// chapter index -> leader character id (0 = vanilla Eirika/Ephraim)
+ALIGN 4
+BS_LeaderTable:
+  BYTE 0x01      // 0x00 Prologue: Eirika
+  BYTE 0x2E      // 0x01 Ch1 Ostia: Hector
+  FILL 0x4E      // remaining chapters: vanilla
+ALIGN 4

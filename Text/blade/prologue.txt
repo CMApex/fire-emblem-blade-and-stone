@@ -10,7 +10,7 @@ Prologue: The Year After[X]
 Seize chapel[X]
 
 ## BS_DrownedName
-Drowned Knight[X]
+Drowned[X]
 
 ## BS_DrownedDesc
 A knight in rusted Renais armor.[N]

@@ -31,10 +31,10 @@ Husk[X]
 A drowned body that walks.[N]
 Nothing behind its eyes.[X]
 ## BS_Name_HollowCaptain
-Hollow Captain[X]
+Hollowed[X]
 ## BS_Desc_HollowCaptain
-It still stands its watch.[N]
-It doesn't know it's dead.[X]
+The ship's captain. It still[N]
+stands its watch.[X]
 
 ## BS_ClassKnightLord
 Knight Lord[X]

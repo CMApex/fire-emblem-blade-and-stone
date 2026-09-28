@@ -131,18 +131,13 @@ UNIT
 
 // ---------- scenes ----------
 BS_C1_Beginning:
-  SetBackground(0x0E)       // throne room
   MUSC 0x2A                 // Laughter
-  TEXTSHOW BS_C1_Opening
-  TEXTEND
-  FADI 16
-  REMA
+  Text(0x0E, BS_C1_Opening) // throne room; vanilla Text_BG routine sets up and tears down the background
   LOAD1 0x1 BS_C1_Party
   ENUN
   LOAD1 0x1 BS_C1_Enemies
   ENUN
   CAM1 [10,1]
-  FADU 16
   STAL 20
   CAM1 [9,13]
   STAL 40
@@ -195,6 +190,7 @@ BS_C1_EndScene:
   TEXTEND
   FADI 16
   REMA
+  ASMC BS_ClearSuspendASMC|1   // no leftover 'Resume Chapter' after the demo ends
   EVBIT_F 0x2
   MNTS 0x1
   NoFade
