@@ -365,10 +365,7 @@ def main(fe8_path, fe7_path):
         cl.append("SHORT %s %s" % (nm, ds))
         cl.append("BYTE " + " ".join("0x%02X" % x for x in raw[4:0x34]))
         cl.append("WORD " + " ".join("0x%08X" % struct.unpack_from("<I", raw, j)[0] for j in range(0x34, CLASS_SZ, 4)))
-    for cid, (label, fe7c, clone, *_r) in NEW_CLASSES.items():   # moving map sprites (gMuInfoTable, by class-1)
-        mu = d8[0x9A2E00 + (clone - 1) * 8: 0x9A2E00 + clone * 8]
-        cl += ["ORG 0x%X  // MU for 0x%02X <- 0x%02X" % (0x9A2E00 + (cid - 1) * 8, cid, clone),
-               "WORD 0x%08X 0x%08X" % struct.unpack("<II", mu)]
+    # map sprites for the new classes come from FE7: tools/port_banims.py
     cl.append("POP")
     w("Classes.event", "\n".join(cl) + "\n")
     print("cast: %d characters, %d personal skills, %d new classes" % (len(rows), len(person_skills), len(NEW_CLASSES)))

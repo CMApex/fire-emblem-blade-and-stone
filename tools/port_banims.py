@@ -34,6 +34,11 @@ FE8_PALCFG, FE8_PALIT = 0x95E0A4, 0x95EEA4                    # [pid-1][7] class
 FE7_CHARS, FE7_CLASSES, FE8_CLASSES = 0xBDCE18, 0xBE015C, 0x807110
 FE8_ITEMS, FE7_ITEMS = 0x809B10, 0xBE222C
 
+FE7_SMS, FE8_SMS = 0xC99700, 0x8AF880        # standing map sprites {u16 pattern, u16 size, LZ sheet}
+FE7_MU, FE8_MU = 0xC9D174, 0x9A2E00           # moving map sprites by class-1 {LZ sheet, AP anim}
+# FE8 class -> FE7 class whose map sprites it gets (these FE8 classes are used only by our FE7 units)
+MAP_SPRITES = {0x77: 0x07, 0x78: 0x09, 0x79: 0x08, 0x46: 0x41}
+
 # New FE8 classes that *are* FE7 classes: their class animation list is replaced outright.
 CLASS_ANIM = {0x77: 0x07, 0x78: 0x09, 0x79: 0x08}            # Knight Lord, Great Lord (Hector), Blade Lord
 
@@ -215,6 +220,24 @@ def main(fe8_path, fe7_path):
         ev.append("BYTE " + " ".join(str(x) for x in cfg))
         ev.append("ORG 0x%X" % (FE8_PALIT + (pid - 1) * 7))
         ev.append("BYTE " + " ".join(str(x) for x in it))
+
+    # --- map sprites (standing + moving) for the FE7-only classes ---
+    mu_ptrs = sorted({u32(d7, FE7_MU + k * 8 + j) for k in range(99) for j in (0, 4)})
+    for c8, c7 in MAP_SPRITES.items():
+        sms8 = d8[FE8_CLASSES + c8 * 84 + 6]       # the class's own (otherwise unused) SMS slot
+        sms7 = d7[FE7_CLASSES + c7 * 84 + 6]
+        pat, size, sheet = struct.unpack_from("<HHI", d7, FE7_SMS + sms7 * 8)
+        a = blob.add(("sms", sheet), lz_raw(d7, sheet - 0x08000000))
+        ev.append("ORG 0x%X  // standing sprite %d for class 0x%02X <- FE7 class 0x%02X" % (FE8_SMS + sms8 * 8, sms8, c8, c7))
+        ev.append("SHORT %d %d; WORD 0x%08X" % (pat, size, a))
+        ev.append("ORG 0x%X" % (FE8_CLASSES + c8 * 84 + 6))
+        ev.append("BYTE %d" % sms8)
+        img, ap = struct.unpack_from("<II", d7, FE7_MU + (c7 - 1) * 8)
+        nxt = min([p for p in mu_ptrs if p > ap] + [ap + 0x800])
+        a_img = blob.add(("mu", img), lz_raw(d7, img - 0x08000000))
+        a_ap = blob.add(("ap", ap), bytes(d7[ap - 0x08000000: nxt - 0x08000000]))
+        ev.append("ORG 0x%X  // moving sprite for class 0x%02X" % (FE8_MU + (c8 - 1) * 8, c8))
+        ev.append("WORD 0x%08X 0x%08X" % (a_img, a_ap))
 
     # banim data blob at its fixed address
     ev.append("ORG 0x%X" % BANIM_BASE)
