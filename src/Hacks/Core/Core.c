@@ -64,3 +64,46 @@ void StoreAdjustedCameraPositions(int xIn, int yIn, int *xOut, int *yOut)
 	*xOut = x;
 	*yOut = y;
 }
+
+/**
+ * QoL: skip the "Health and Safety" warning screen (jump straight to the logos,
+ * exactly as a soft reset does).
+ */
+LYN_REPLACE_CHECK(PrepareHealthAndSafetyScreen);
+void PrepareHealthAndSafetyScreen(struct ProcOpAnimHS *proc)
+{
+	Proc_Goto(proc, 0x3E7);
+}
+
+/**
+ * QoL: new-game option defaults. Same as vanilla InitPlayConfig except
+ * text speed = Fast and game (map movement) speed = Fast.
+ */
+LYN_REPLACE_CHECK(InitPlayConfig);
+void InitPlayConfig(int isDifficult, s8 controller)
+{
+	CpuFill16(0, &gPlaySt, sizeof(gPlaySt));
+
+	gPlaySt.chapterIndex = 0;
+
+	if (isDifficult)
+		gPlaySt.chapterStateBits |= PLAY_FLAG_HARD;
+
+	gPlaySt.config.controller = controller;
+	gPlaySt.config.animationType = 0;
+	gPlaySt.config.disableTerrainDisplay = 0;
+	gPlaySt.config.unitDisplayType = 0;
+	gPlaySt.config.autoCursor = 0;
+	gPlaySt.config.textSpeed = 2;       /* vanilla 1 (normal) */
+	gPlaySt.config.gameSpeed = 1;       /* vanilla 0 (normal) */
+	gPlaySt.config.disableBgm = 0;
+	gPlaySt.config.disableSoundEffects = 0;
+	gPlaySt.config.windowColor = 0;
+	gPlaySt.config.disableAutoEndTurns = 0;
+	gPlaySt.config.noSubtitleHelp = 0;
+	gPlaySt.config.battleForecastType = 0;
+	gPlaySt.config.debugControlRed = 0;
+	gPlaySt.config.debugControlGreen = 0;
+	gPlaySt.config.unitColor = 0;
+	gPlaySt.config.unk41_5 = 0;
+}
