@@ -13,7 +13,7 @@
 PUSH
   ORG ChapterDataTable + (BS_CH1 * ChapterDataTableEntSize) + 4
     BS_MAP_TILESET_CH1         // tileset from maps/ch1.tmx (its obj1/obj2/pal/config properties)
-    BYTE 0x08 0x00 0x00 0x09   // map slot, tile animation 1, tile animation 2, map-changes slot
+    BYTE 0x08 0x12 0x00 0x09   // map slot, tile animation 1 (0x12: this tileset's water, as vanilla), tile animation 2, map-changes slot
   ORG ChapterDataTable + (BS_CH1 * ChapterDataTableEntSize) + 12
     BYTE 0x00                                      // no fog
   ORG ChapterDataTable + (BS_CH1 * ChapterDataTableEntSize) + 22
