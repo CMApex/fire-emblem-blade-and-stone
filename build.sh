@@ -22,6 +22,7 @@ rm -f gen/BuildConfig.event.new
 
 echo "== generate"
 python3 tools/import_fe7_faces.py "$FE7" "$FE8"
+python3 tools/maptiles.py "$FE8"
 python3 tools/buildmaps.py
 python3 tools/extract_tables.py "$FE8"
 python3 tools/gencast.py "$FE8" "$FE7"

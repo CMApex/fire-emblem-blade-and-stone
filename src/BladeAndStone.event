@@ -14,6 +14,7 @@
 #include "gen/BsMsgs.event"          // text IDs (tools/gentext.py)
 #include "gen/CastDefs.event"        // BS_PID_* / BS_LV_* / BS_CLASS_* (tools/gencast.py)
 #include "gen/FE7FaceDefs.event"     // BS_FACE_* (tools/import_fe7_faces.py)
+#include "gen/MapDefs.event"         // BS_MAP_TILESET_* from maps/*.tmx (tools/buildmaps.py)
 
 // ---- engine-level changes ----
 #include "Hacks/Core/Core.event"

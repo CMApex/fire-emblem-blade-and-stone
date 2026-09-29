@@ -1,6 +1,6 @@
 // ============================================================
 //  Blade & Stone — Chapter 1: The Marquess's Docks
-//  Map: Ostia harbor district (21x23, port tileset obj 0E / pal 72 / cfg 10) — maps_src/ch1.sketch
+//  Map: Ostia harbor district (21x23, port tileset) — maps/ch1.tmx (edit in Tiled)
 //
 //  Intent: three bands. The manor terrace (start) opens on market lanes; two walls with
 //  narrow stair gaps cut the town from the quay — Hector and Oswin can plug a gap while
@@ -12,7 +12,8 @@
 
 PUSH
   ORG ChapterDataTable + (BS_CH1 * ChapterDataTableEntSize) + 4
-    BYTE 0x0E 0x00 0x72 0x10 0x08 0x00 0x00 0x09   // obj1 obj2 pal config mapID anim1 anim2 mapchanges
+    BS_MAP_TILESET_CH1         // tileset from maps/ch1.tmx (its obj1/obj2/pal/config properties)
+    BYTE 0x08 0x00 0x00 0x09   // map slot, tile animation 1, tile animation 2, map-changes slot
   ORG ChapterDataTable + (BS_CH1 * ChapterDataTableEntSize) + 12
     BYTE 0x00                                      // no fog
   ORG ChapterDataTable + (BS_CH1 * ChapterDataTableEntSize) + 22

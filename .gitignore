@@ -10,4 +10,5 @@ __pycache__/
 engine/
 gen/
 .colorzcore/
-maps_src/*.png
+maps/tilesets/
+maps/sketches/*.png

@@ -1,6 +1,6 @@
 // ============================================================
 //  Blade & Stone — Prologue: The Year After
-//  Map: Merrow Point, southern Renais coast (20x15, plains tileset) — maps_src/prologue.sketch
+//  Map: Merrow Point, southern Renais coast (20x15, plains tileset) — maps/prologue.tmx (edit in Tiled)
 //
 //  Intent: three lanes from Merrow village to the chapel — the north lane under the ridge
 //  (short, forested, guarded), the open middle past the fort, and the southern beach
@@ -14,7 +14,9 @@
 
 // ---------- chapter data overrides ----------
 PUSH
-  // tileset stays vanilla plains (obj 1/0, pal 2, config 3), map slot 4, map changes slot 6
+  ORG ChapterDataTable + (BS_CH_PROLOGUE * ChapterDataTableEntSize) + 4
+    BS_MAP_TILESET_PROLOGUE    // tileset from maps/prologue.tmx (its obj1/obj2/pal/config properties)
+    BYTE 0x04 0x05 0x00 0x06   // map slot, tile animation 1, tile animation 2, map-changes slot
   ORG ChapterDataTable + (BS_CH_PROLOGUE * ChapterDataTableEntSize) + 22
     SHORT 0x0B      // player phase: Follow Me
     SHORT 0x13      // enemy phase: Shadow of the Enemy
