@@ -34,8 +34,8 @@ if stage=='boot':
         g.press('A',40)
     g.save(S+'run_p1.ss'); g.sheet(OUT+'01_intro.png',cols=6)
 elif stage=='p1':
-    g.move_cursor(18,13); g.press('A',40); g.move_cursor(18,12); g.press('A',55); g.shot('visit menu'); g.press('A',45); P.settle('visit')
-    r=play(g,P,[1,2,0x10,0x11],1,seize=(11,2),boss_pos=(11,2),lord_goal=(11,2),tag='P')
+    g.move_cursor(17,12); g.press('A',40); g.move_cursor(17,11); g.press('A',10); P.arrive(1,(17,11)); g.shot('visit menu'); g.press('A',45); P.settle('visit')
+    r=play(g,P,[1,2,0x10,0x11],1,seize=(7,1),boss_pos=(7,1),lord_goal=(7,1),tag='P')
     print('prologue result',r,g.turn())
     g.save(S+'run_pend.ss'); g.sheet(OUT+'02_prologue.png',cols=6)
 elif stage=='pend':
@@ -52,9 +52,9 @@ elif stage=='pend':
     for k in range(3): g.wait(10); g.shot('ch1 start cursor f%d'%k)
     g.save(S+'run_c1.ss'); g.sheet(OUT+'03_to_ch1.png',cols=6)
 elif stage=='c1':
-    plans={0x27:{'visit':(3,3)}, 0x28:{'visit':(17,3)}, 0x23:{'talk':0x24}}
-    r=play(g,P,[0x27,0x28,0x24,0x26,0x23],0x24,boss_pos=(6,19),lord_goal=(6,18),tag='C1',plans=plans,max_turns=25,
-           done_check=lambda: P.is_dialog() and not any((r['x'],r['y'])==(6,19) for r in live(g,'red')))
+    plans={0x27:{'visit':(8,2)}, 0x28:{'visit':(15,6)}, 0x23:{'talk':0x24}}
+    r=play(g,P,[0x27,0x28,0x24,0x26,0x23],0x24,boss_pos=(6,20),lord_goal=(7,20),tag='C1',plans=plans,max_turns=25,
+           done_check=lambda: P.is_dialog() and not any((r['x'],r['y'])==(6,20) for r in live(g,'red')))
     print('ch1 result',r,g.turn())
     g.save(S+'run_c1end.ss'); g.sheet(OUT+'04_ch1.png',cols=6)
 elif stage=='c1end':

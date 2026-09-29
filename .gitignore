@@ -10,3 +10,4 @@ __pycache__/
 engine/
 gen/
 .colorzcore/
+maps_src/*.png

@@ -127,6 +127,61 @@ class Player:
                         heapq.heappush(pq, (nd, nx, ny))
         return dist
 
+    def menu(self):
+        """The open menu (sProc_Menu) as (current index, [(def ptr, msg id, onSelected)]), or None."""
+        raw = self.g.dump(0x02024E68, 0x6C * 64)
+        for i in range(64):
+            if struct.unpack_from("<I", raw, i * 0x6C)[0] == 0x085B64D0:
+                o = i * 0x6C
+                cnt, cur = raw[o + 0x60], raw[o + 0x61]
+                items = []
+                for k in range(cnt):
+                    ip = struct.unpack_from("<I", raw, o + 0x34 + 4 * k)[0]
+                    d = self.g.u32(ip + 0x30)
+                    items.append((d, self.g.u16(d + 4), self.g.u32(d + 0x14)))
+                return cur, items
+        return None
+
+    HEAL_ITEMS = (0x6C, 0x6D, 0xA2)            # Vulnerary, Elixir, Vulnerary (2)
+    ITEM_CMD, USE_CMD = 0x080232E9, 0x08023771
+
+    def pick(self, target_onsel=None, index=None):
+        """Move the open menu's cursor to the entry with this handler (or index) and press A."""
+        for _ in range(8):                      # menus open a few frames late; poll
+            m = self.menu()
+            if m and (index is not None or any(it[2] == target_onsel for it in m[1])):
+                break
+            self.g.wait(10)
+        else:
+            return False
+        cur, items = m
+        if index is None:
+            index = [k for k, it in enumerate(items) if it[2] == target_onsel][0]
+        for _ in range((index - cur) % len(items)):
+            self.g.press("DOWN", 16)
+        self.g.wait(12)
+        before = self.menu()
+        self.g.press("A", 40)
+        if self.menu() == before:               # input landed during the menu's open animation: once more
+            self.g.press("A", 40)
+        return True
+
+    def use_heal_item(self, u, label=""):
+        """With the unit menu open: Item -> the first healing item -> Use. Returns True if used."""
+        slot = next((k for k, it in enumerate(u["items"]) if (it & 0xFF) in self.HEAL_ITEMS), None)
+        if slot is None or not self.pick(self.ITEM_CMD):
+            print("   heal fail@item", slot, self.menu()); return False
+        self.g.wait(20)
+        if not self.pick(index=slot):
+            print("   heal fail@slot", self.menu()); self.cancel(); return False
+        if not self.pick(self.USE_CMD):
+            if self.menu() is None:            # the item was used already (menu closed)
+                self.settle(label + " heal"); return True
+            print("   heal fail@use", self.menu()); self.cancel(); return False
+        self.g.shot(label + " heal")
+        self.settle(label + " heal")
+        return True
+
     def select(self, u):
         self.g.move_cursor(u["x"], u["y"]); self.g.press("A", 45)
 
@@ -167,6 +222,17 @@ class Player:
             g.move_cursor(*seize); g.press("A", 10); self.arrive(u["cid"], seize); g.shot(label + " seize menu"); g.press("A", 45)
             return "seize"
         best = None
+        # a wounded unit pulls back out of reach instead of trading blows (what any player would do)
+        if u["hp"] < 0.45 * u["maxhp"] and red and not (seize and seize in reach):
+            tile = max(reach, key=lambda p: (min(abs(p[0] - r["x"]) + abs(p[1] - r["y"]) for r in red), -abs(p[0] - u["x"]) - abs(p[1] - u["y"])))
+            g.move_cursor(*tile); g.press("A", 10); self.arrive(u["cid"], tile)
+            g.shot(label + " retreat")
+            healed = self.use_heal_item(u, label)
+            print("  retreat c%X hp %d/%d -> %s healed=%s items=%s" % (u["cid"], u["hp"], u["maxhp"], tile, healed, [hex(i) for i in u["items"]]), flush=True)
+            if not healed:
+                g.press("UP", 12); g.press("A", 45)
+            self.settle(label + " retreat")
+            return "retreat"
         if allow_attack:
             for e in red:
                 for (x, y) in reach:

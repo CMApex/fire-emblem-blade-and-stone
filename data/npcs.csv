@@ -1,4 +1,5 @@
 pid,key,name,desc,class,face,level,hp,str,mag,skl,spd,lck,def,res,con,ranks,growths,attrs,notes
-0x60,DrownedKnight,BS_DrownedName,BS_DrownedDesc,0x56,0x0,4,8,3,0,2,0,0,3,0,0,Sword:C Bow:C,90/40/5/40/30/0/30/10,boss,Prologue boss
-0x61,HollowCaptain,BS_Name_HollowCaptain,BS_Desc_HollowCaptain,0x42,0x0,5,6,3,0,3,2,0,3,1,0,Axe:C,70/40/5/35/30/25/30/15,boss,Ch1 boss
-0x7F,Husk,BS_Name_Husk,BS_Desc_Husk,0x3F,0x0,1,0,0,0,0,0,0,0,0,0,,60/30/5/30/30/20/20/10,,generic hollowed enemy
+0x60,DrownedKnight,BS_DrownedName,BS_DrownedDesc,0x56,0x0,8,22,10,0,9,6,5,7,5,2,Sword:B Bow:C,90/40/5/40/30/0/30/10,boss,Prologue boss: a Renais knight the sea gave back
+0x61,HollowCaptain,BS_Name_HollowCaptain,BS_Desc_HollowCaptain,0x43,0x0,8,16,9,0,8,5,5,8,3,2,Axe:A,70/40/5/35/30/25/30/15,boss,Ch1 boss: the Merchant Grace's captain
+0x7F,Husk,BS_Name_Husk,BS_Desc_Husk,0x3F,0x0,1,6,3,1,3,2,3,3,1,0,Sword:B Lance:B Axe:B Bow:B,60/30/5/30/30/20/20/10,,generic hollowed human enemy (veteran-scale bases)
+0xAA,Monster,0x255,0x2B1,0x52,0x0,1,8,7,7,6,6,3,6,3,0,,60/20/20/30/35/25/15/15,,generic monster (vanilla name; veteran-scale bases)

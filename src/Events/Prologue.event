@@ -1,15 +1,19 @@
 // ============================================================
 //  Blade & Stone — Prologue: The Year After
-//  Map: Merrow Point, southern Renais coast (20x15, plains tileset)
+//  Map: Merrow Point, southern Renais coast (20x15, plains tileset) — maps_src/prologue.sketch
+//
+//  Intent: three lanes from Merrow village to the chapel — the north lane under the ridge
+//  (short, forested, guarded), the open middle past the fort, and the southern beach
+//  (sand slows the three cavaliers). The sea is the clock: the tide pulls back a turn
+//  before things walk out of the coves (turns 3 and 5), and the chapel boss holds the fort.
 // ============================================================
 
 #define BS_CH_PROLOGUE 0x00
 #define BS_DrownedKnight BS_PID_DROWNEDKNIGHT
-#define BS_Monster 0xAA            // generic monster character
+#define BS_Monster BS_PID_MONSTER
 
 // ---------- chapter data overrides ----------
 PUSH
-  ORG ChapterDataTable + (BS_CH_PROLOGUE * ChapterDataTableEntSize)
   // tileset stays vanilla plains (obj 1/0, pal 2, config 3), map slot 4, map changes slot 6
   ORG ChapterDataTable + (BS_CH_PROLOGUE * ChapterDataTableEntSize) + 22
     SHORT 0x0B      // player phase: Follow Me
@@ -30,7 +34,7 @@ BS_P_VillageClosed:
   SHORT 0x80                 // metatile 0x20 (closed village gate) << 2
 ALIGN 4
 BS_P_MapChanges:
-  TileMap(0, 18, 12, 1, 1, BS_P_VillageClosed)
+  TileMap(0, 17, 11, 1, 1, BS_P_VillageClosed)
   TileMapEnd
 EventPointerTable(0x06, BS_P_MapChanges)
 
@@ -58,9 +62,9 @@ BS_P_Talk:
   END_MAIN
 
 BS_P_Location:
-  Village(0x10, BS_P_VillageEvent, 18, 12)
-  House(0x11, BS_P_HouseEvent, 14, 13)
-  Seize(11, 2)
+  Village(0x10, BS_P_VillageEvent, 17, 11)
+  House(0x11, BS_P_HouseEvent, 15, 13)
+  Seize(7, 1)
   END_MAIN
 
 BS_P_Misc:
@@ -79,37 +83,55 @@ BS_P_Traps:
 // ---------- units ----------
 BS_P_Party:
 #ifdef BS_DEBUG_SEIZE
-UNIT BS_PID_EIRIKA BS_CLASS_EIRIKA 0x00 Level(BS_LV_EIRIKA, Ally, False)  [11,4]  0b 0x0 0x0 0x0 [Rapier, Vulnerary, 0, 0] NoAI
+UNIT BS_PID_EIRIKA BS_CLASS_EIRIKA 0x00 Level(BS_LV_EIRIKA, Ally, False)  [7,3]   0b 0x0 0x0 0x0 [Rapier, Vulnerary, 0, 0] NoAI
 #else
-UNIT BS_PID_EIRIKA BS_CLASS_EIRIKA 0x00 Level(BS_LV_EIRIKA, Ally, False)  [18,13] 0b 0x0 0x0 0x0 [Rapier, Vulnerary, 0, 0] NoAI
+UNIT BS_PID_EIRIKA BS_CLASS_EIRIKA 0x00 Level(BS_LV_EIRIKA, Ally, False)  [17,12] 0b 0x0 0x0 0x0 [Rapier, Vulnerary, 0, 0] NoAI
 #endif
-UNIT BS_PID_SETH BS_CLASS_SETH 0x00 Level(BS_LV_SETH, Ally, False)  [17,13] 0b 0x0 0x0 0x0 [SteelLance, SteelSword, 0, 0] NoAI
-UNIT BS_PID_FORDE BS_CLASS_FORDE 0x00 Level(BS_LV_FORDE, Ally, False)  [19,13] 0b 0x0 0x0 0x0 [IronSword, Javelin, Vulnerary, 0] NoAI
-UNIT BS_PID_KYLE BS_CLASS_KYLE 0x00 Level(BS_LV_KYLE, Ally, False)  [18,14] 0b 0x0 0x0 0x0 [SteelLance, Javelin, 0, 0] NoAI
+UNIT BS_PID_SETH  BS_CLASS_SETH  0x00 Level(BS_LV_SETH, Ally, False)  [16,12] 0b 0x0 0x0 0x0 [SteelLance, SteelSword, 0, 0] NoAI
+UNIT BS_PID_FORDE BS_CLASS_FORDE 0x00 Level(BS_LV_FORDE, Ally, False) [18,12] 0b 0x0 0x0 0x0 [IronSword, Javelin, Vulnerary, 0] NoAI
+UNIT BS_PID_KYLE  BS_CLASS_KYLE  0x00 Level(BS_LV_KYLE, Ally, False)  [17,13] 0b 0x0 0x0 0x0 [SteelLance, Javelin, 0, 0] NoAI
 UNIT
 
+// Monsters: generic "Monster" (vanilla name) with veteran-scale bases (data/npcs.csv), class growths.
 BS_P_Enemies:
 #ifndef BS_DEBUG_SEIZE
-UNIT BS_DrownedKnight 0x56 0x00 Level(4, Enemy, True) [11,2]  0b 0x0 0x0 0x0 [SteelSword, Vulnerary, 0, 0] NeverMoveAI
+UNIT BS_DrownedKnight 0x56 0x00 Level(8, Enemy, True) [7,1]  0b 0x0 0x0 0x0 [SteelSword, Elixir, 0, 0] NeverMoveAI
 #endif
-UNIT BS_Monster 0x5F 0x00 Level(5, Enemy, True) [10,5]  0b 0x0 0x0 0x0 [EvilEye, 0, 0, 0] AttackInRangeAI
-UNIT BS_Monster 0x52 0x00 Level(6, Enemy, True) [6,5]   0b 0x0 0x0 0x0 [RottenClaw, 0, 0, 0] DefaultAI
-UNIT BS_Monster 0x52 0x00 Level(6, Enemy, True) [3,6]   0b 0x0 0x0 0x0 [RottenClaw, 0, 0, 0] DefaultAI
-UNIT BS_Monster 0x52 0x00 Level(7, Enemy, True) [8,7]   0b 0x0 0x0 0x0 [RottenClaw, 0, 0, 0] DefaultAI
-UNIT BS_Monster 0x54 0x00 Level(6, Enemy, True) [12,6]  0b 0x0 0x0 0x0 [IronSword, 0, 0, 0] AttackInRangeAI
-UNIT BS_Monster 0x54 0x00 Level(6, Enemy, True) [15,5]  0b 0x0 0x0 0x0 [IronLance, 0, 0, 0] AttackInRangeAI
-UNIT BS_Monster 0x5B 0x00 Level(5, Enemy, True) [14,9]  0b 0x0 0x0 0x0 [FetidClaw, 0, 0, 0] DefaultAI
-UNIT BS_Monster 0x58 0x00 Level(5, Enemy, True) [13,11] 0b 0x0 0x0 0x0 [PoisonClaw, 0, 0, 0] DefaultAI
+// chapel guard
+UNIT BS_Monster 0x55 0x00 Level(10, Enemy, True) [7,2]   0b 0x0 0x0 0x0 [IronBow, 0, 0, 0] AttackInRangeAI      // Bonewalker (bow) on the rise
+UNIT BS_Monster 0x52 0x00 Level(10, Enemy, True) [6,2]   0b 0x0 0x0 0x0 [RottenClaw, 0, 0, 0] AttackInRangeAI   // Revenant
+UNIT BS_Monster 0x5F 0x00 Level(10, Enemy, True) [9,3]   0b 0x0 0x0 0x0 [EvilEye, 0, 0, 0] AttackInRangeAI      // Mogall
+// north lane
+UNIT BS_Monster 0x54 0x00 Level(10, Enemy, True) [11,3]  0b 0x0 0x0 0x0 [IronSword, 0, 0, 0] DefaultAI           // Bonewalker
+UNIT BS_Monster 0x52 0x00 Level(10, Enemy, True) [13,2]  0b 0x0 0x0 0x0 [RottenClaw, 0, 0, 0] DefaultAI
+UNIT BS_Monster 0x58 0x00 Level(8, Enemy, True)  [15,3]  0b 0x0 0x0 0x0 [PoisonClaw, 0, 0, 0] AttackInRangeAI    // Bael in the trees
+// open middle
+UNIT BS_Monster 0x5B 0x00 Level(9, Enemy, True)  [13,5]  0b 0x0 0x0 0x0 [FireFang, 0, 0, 0] DefaultAI            // Mauthe Doog: fast, goes for the village
+UNIT BS_Monster 0x52 0x00 Level(10, Enemy, True) [13,8]  0b 0x0 0x0 0x0 [RottenClaw, 0, 0, 0] DefaultAI
+// south lane / beach
+UNIT BS_Monster 0x55 0x00 Level(10, Enemy, True) [11,12] 0b 0x0 0x0 0x0 [IronBow, 0, 0, 0] AttackInRangeAI
+UNIT BS_Monster 0x52 0x00 Level(10, Enemy, True) [7,13]  0b 0x0 0x0 0x0 [RottenClaw, 0, 0, 0] DefaultAI
 UNIT
 
-BS_P_Reinf1Units:
-UNIT BS_Monster 0x52 0x00 Level(7, Enemy, True) [1,5]   0b 0x0 0x0 0x0 [RottenClaw, 0, 0, 0] DefaultAI
-UNIT BS_Monster 0x52 0x00 Level(7, Enemy, True) [1,8]   0b 0x0 0x0 0x0 [RottenClaw, 0, 0, 0] DefaultAI
+BS_P_EnemiesHard:
+UNIT BS_Monster 0x53 0x00 Level(6, Enemy, True)  [5,11]  0b 0x0 0x0 0x0 [FetidClaw, 0, 0, 0] AttackInRangeAI     // Entombed on the spit
 UNIT
 
-BS_P_Reinf2Units:
-UNIT BS_Monster 0x63 0x00 Level(6, Enemy, True) [5,1]   0b 0x0 0x0 0x0 [IronLance, 0, 0, 0] DefaultAI
-UNIT BS_Monster 0x63 0x00 Level(6, Enemy, True) [4,10]  0b 0x0 0x0 0x0 [Javelin, 0, 0, 0] DefaultAI
+BS_P_Reinf1Units:     // the tide goes out at the southern cove
+UNIT BS_Monster 0x52 0x00 Level(10, Enemy, True) [2,10] 0b 0x0 0x0 0x0 [RottenClaw, 0, 0, 0] DefaultAI
+UNIT BS_Monster 0x58 0x00 Level(8, Enemy, True)  [3,11] 0b 0x0 0x0 0x0 [PoisonClaw, 0, 0, 0] DefaultAI
+UNIT BS_Monster 0x52 0x00 Level(10, Enemy, True) [1,12] 0b 0x0 0x0 0x0 [RottenClaw, 0, 0, 0] DefaultAI
+UNIT
+BS_P_Reinf1Hard:
+UNIT BS_Monster 0x5B 0x00 Level(9, Enemy, True)  [2,12] 0b 0x0 0x0 0x0 [FireFang, 0, 0, 0] DefaultAI
+UNIT
+
+BS_P_Reinf2Units:     // wings over the northern cove
+UNIT BS_Monster 0x63 0x00 Level(10, Enemy, True) [1,1] 0b 0x0 0x0 0x0 [IronLance, 0, 0, 0] DefaultAI
+UNIT BS_Monster 0x63 0x00 Level(10, Enemy, True) [2,2] 0b 0x0 0x0 0x0 [Javelin, 0, 0, 0] DefaultAI
+UNIT
+BS_P_Reinf2Hard:
+UNIT BS_Monster 0x64 0x00 Level(4, Enemy, True)  [3,3] 0b 0x0 0x0 0x0 [SteelLance, 0, 0, 0] DefaultAI       // Deathgoyle
 UNIT
 
 // ---------- scenes ----------
@@ -128,10 +150,15 @@ BS_P_Beginning:
   EARTHQUAKE_END
   MUSC 0x11                 // Shadows Approach
   Text(BS_P_Tremor)
-  CAM1 [10,3]
+  CAM1 [7,2]
   STAL 30
   LOAD1 0x1 BS_P_Enemies
   ENUN
+  CHECK_HARD
+  BEQ 0x2 0xC 0x0
+  LOAD1 0x1 BS_P_EnemiesHard
+  ENUN
+  LABEL 0x2
   STAL 45
   CAM1 [17,12]
   Text(BS_P_Monsters)
@@ -139,7 +166,7 @@ BS_P_Beginning:
   ENDA
 
 BS_P_Turn2Warn:
-  CUMO [1,6]
+  CUMO [2,11]
   STAL 40
   CURE
   Text(BS_P_Turn2)
@@ -147,14 +174,19 @@ BS_P_Turn2Warn:
   ENDA
 
 BS_P_Reinforce1:
-  CAM1 [1,6]
+  CAM1 [2,11]
   LOAD1 0x1 BS_P_Reinf1Units
   ENUN
+  CHECK_HARD
+  BEQ 0x1 0xC 0x0
+  LOAD1 0x1 BS_P_Reinf1Hard
+  ENUN
+  LABEL 0x1
   NoFade
   ENDA
 
 BS_P_Turn4Warn:
-  CUMO [4,5]
+  CUMO [2,2]
   STAL 40
   CURE
   Text(BS_P_Turn4)
@@ -162,9 +194,14 @@ BS_P_Turn4Warn:
   ENDA
 
 BS_P_Reinforce2:
-  CAM1 [4,5]
+  CAM1 [2,2]
   LOAD1 0x1 BS_P_Reinf2Units
   ENUN
+  CHECK_HARD
+  BEQ 0x1 0xC 0x0
+  LOAD1 0x1 BS_P_Reinf2Hard
+  ENUN
+  LABEL 0x1
   NoFade
   ENDA
 

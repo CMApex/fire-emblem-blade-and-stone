@@ -132,7 +132,7 @@ Personal skills come from C-SkillSys's catalog. Each is picked to *read like the
 | Innes | Sniper | Vanity (+2 dmg, +10 hit at range 2) | pride | 4 |
 | Tana | Falcon Knight | SocialButterfly (2× support gain) | everyone's friend | 4 |
 | Lute | Sage | Focus (+10 crit with no ally within 3) | aloof prodigy | II |
-| Ewan | *Pupil* (growing) | Aptitude (+20% growths) | he'll be great | II |
+| Ewan | *Mage* (growing; a year past Pupil) | Aptitude (+20% growths) | he'll be great | II |
 | Cormag | Wyvern Lord | Frenzy (+1 dmg per 4 taken) | grief | 8 |
 | Duessel | Great Knight | Obstruct (foes can't pass adjacent) | the Obsidian wall | 8 |
 | Knoll | Druid | MaleficAura (enemies within 2 take +2 magic dmg) | dark scholar | 8 |
@@ -174,7 +174,7 @@ Personal skills come from C-SkillSys's catalog. Each is picked to *read like the
 |---|---|---|---|
 | Garcia | Warrior | StrongRiposte (attacked: +3 dmg) | Caer Pelyn |
 | Natasha | Bishop | VoiceOfPeace (enemies within 2 −2 dmg) | Rausten |
-| Amelia | *Recruit* (growing) | Discipline (2× WEXP) | Grado |
+| Amelia | *Cavalier* (growing; a year past Recruit) | Discipline (2× WEXP) | Grado |
 | Artur | Bishop | Slayer (effective vs monsters) | Caer Pelyn |
 | Dozla | Berserker | RecklessFighter (both double at HP>50%) | Rausten |
 | Rennac | Rogue | Shakedown (steal gold = dmg) | Rausten |
@@ -335,6 +335,13 @@ Echo-heavy. Nils. Athos (playable, time-limited). Ysolde's turn. Maelis's end. "
 | Pent × Louise (Company) | preset A-rank, already married, with a scene rather than a support chain |
 
 ## 15. Change Log
+
+### v3.1 (build decisions, Sept 2026)
+- Ewan and Amelia are a year past their trainee classes (Mage, Cavalier). Myrrh keeps her own Manakete class.
+- Character IDs are tiered: Core in 0x01-0x32 (FE8 cast keeps vanilla IDs; FE7 Core fills 0x0A, 0x0D, 0x12, 0x13, 0x1A-0x1C, 0x21, 0x23-0x32), Company in 0x33-0x3A and 0x40-0x51, NPCs 0x52+, bosses 0x60+.
+- Every FE7 veteran uses their FE7 battle animation and personal FE7 palette. The FE7 lords are real classes with FE7 stats and map sprites.
+- Army constraint to remember in Act III: Core (50) + Company guests present at once must stay at or below 51.
+- Two-army structure needs a party swap mechanism before Ch. 2 (Eirika's group is benched during Hector's chapter).
 
 ### v2 → v3 (decisions)
 - FE6 strict, with the consequences table (§4).
