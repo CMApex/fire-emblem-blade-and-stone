@@ -72,8 +72,14 @@ fi
 if [ ! -x "$EA/ColorzCore" ]; then
   step "ColorzCore (Linux build, needs the .NET 8 SDK)"
   pin https://github.com/StanHash/ColorzCore .toolchain/src/ColorzCore $COLORZ_COMMIT
-  DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 \
-    dotnet publish .toolchain/src/ColorzCore/ColorzCore/ColorzCore.csproj -c Release -o "$EA" >/dev/null
+  if ! DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 \
+       dotnet publish .toolchain/src/ColorzCore/ColorzCore/ColorzCore.csproj -c Release -o "$EA" \
+       > .toolchain/colorzcore-build.log 2>&1; then
+    echo "setup: building ColorzCore failed; last lines of .toolchain/colorzcore-build.log:"
+    grep -E "error" .toolchain/colorzcore-build.log | sort -u | tail -5
+    echo "setup: (it downloads the .NET 6 reference pack from nuget.org, so it needs internet access)"
+    exit 1
+  fi
 fi
 
 DKP="$ROOT/.toolchain/devkitpro"
