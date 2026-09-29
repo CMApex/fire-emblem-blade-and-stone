@@ -51,6 +51,8 @@ def main():
         note = "copied from vanilla chapter 0x%02X" % src
     tmx.write(out, grid, ts, note)
     print("newmap: wrote %s (%dx%d, %s)" % (os.path.relpath(out, ROOT), len(grid[0]), len(grid), note))
+    print("newmap: vanilla chapter 0x%02X animates this tileset with tile animations 0x%02X/0x%02X; use the same"
+          " in your chapter data (see HACKING.md, 'Adding a chapter')" % (src, ch.anim1, ch.anim2))
     os.execvp(sys.executable, [sys.executable, os.path.join(ROOT, "tools", "maptiles.py"), a.rom])
 
 

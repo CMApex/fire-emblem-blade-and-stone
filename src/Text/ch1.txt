@@ -62,7 +62,7 @@ When this is done, I'm coming to[NL]
 Pherae.[.] No arguments.[A][OpenMidRight]I wasn't going to argue.[A][OpenMidLeft]You always argue.[A][OpenMidRight][ToggleSmile]Not today.[X]
 
 ## BS_C1_HouseW
-[OpenMidLeft][LoadFace][0x59][0x01][OpenMidRight][LoadFace][0xFF][0xFF][OpenMidLeft]My brother drowned off the Dread Isle.[NL]
+[OpenMidLeft][LoadVillagerElder][OpenMidRight][LoadActiveUnit][OpenMidLeft]My brother drowned off the Dread Isle.[NL]
 Twenty years ago now.[.][A][NL]
 This morning I saw him on the pier.[.][A][NL]
 He didn't know me.[.][NL]
@@ -71,7 +71,7 @@ Take this. He'd have wanted you[NL]
 to have it. He was a kind man.[.][A][X]
 
 ## BS_C1_HouseE
-[OpenMidLeft][LoadFace][0x5E][0x01][OpenMidRight][LoadFace][0xFF][0xFF][OpenMidLeft]Are you gonna smash the ghosts?[A][NL]
+[OpenMidLeft][LoadVillagerBoy][OpenMidRight][LoadActiveUnit][OpenMidLeft]Are you gonna smash the ghosts?[A][NL]
 Mama says ghosts can't be smashed.[.][NL]
 I said Lord Hector can smash anything.[A][0x02][NL]
 Here. It's holy water. Mama says it's[NL]

@@ -7,9 +7,10 @@
 #define ChapterDataTable 0x8B0890
 #define ChapterDataTableEntSize 148
 
-// FE8 shares sprite tiles 0x380-0x3FF between the 4th dialogue face slot and moving/dying unit
-// sprites (MUs). A scene that starts while a unit is still moving or dissolving (e.g. a boss-kill
-// ending) corrupts the 4th face. Every scene that can follow a kill or a move starts with this.
+// Let a dying unit finish dissolving and moving units stop before a scene starts.
+// Note: this does NOT make a 4th portrait safe. FE8 shares sprite tiles 0x380-0x3FF between the
+// 4th dialogue face slot and the acting unit's map sprite, which stays alive after a boss kill.
+// tools/gentext.py therefore rejects any message showing 4 faces at once (see HACKING.md).
 #define BS_SettleMapSprites "STAL 8; ENUN; STAL 32"
 #include "gen/BsMsgs.event"          // text IDs (tools/gentext.py)
 #include "gen/CastDefs.event"        // BS_PID_* / BS_LV_* / BS_CLASS_* (tools/gencast.py)

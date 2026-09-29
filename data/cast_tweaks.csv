@@ -1,0 +1,8 @@
+# Hand adjustments on top of the stats tools/gencast.py derives from each character's canon career.
+# One row per character; lines starting with # are ignored. Check the result in gen/cast_report.md.
+#   +N / -N  adjusts the derived value      =N  sets it outright
+#   hp str mag skl spd lck def res con      stats (totals, as the stat screen shows them)
+#   g_hp g_str g_mag ... g_res              growths in %
+# Example (remove the # to use it):
+#   Hector,def+2 spd-1 g_def+10,wants to feel tankier than Oswin at the docks
+key,tweaks,why
