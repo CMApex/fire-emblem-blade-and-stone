@@ -69,6 +69,10 @@ Event-script errors come from the event assembler (ColorzCore) and look like
 `src/Events/Ch1.event:112:1: Error: ...`. Line numbers refer to the copy in
 `engine/Contents/BladeAndStone/`, which mirrors `src/` exactly, so the same line in `src/` is the one to fix.
 
+Two machines can produce ROMs whose checksums differ by a few bytes. grit (the graphics converter) compresses a
+handful of engine images slightly differently depending on the machine; the decompressed images are identical,
+so it's the same game.
+
 If a build ever seems stale (a change that doesn't show up), `./build.sh --clean` rebuilds the engine from scratch
 (about 5 minutes).
 
