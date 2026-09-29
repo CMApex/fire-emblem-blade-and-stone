@@ -1,0 +1,10 @@
+* text=auto eol=lf
+*.sh text eol=lf
+*.py text eol=lf
+*.event text eol=lf
+*.txt text eol=lf
+*.tmx text eol=lf
+*.csv text eol=lf
+*.gba binary
+*.ups binary
+*.png binary

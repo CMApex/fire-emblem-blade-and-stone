@@ -1,15 +1,20 @@
 #!/bin/bash
-# Blade & Stone build:  ./build.sh [FE8U.gba] [FE7U.gba]
+# Blade & Stone build:  ./build.sh [--clean] [FE8U.gba] [FE7U.gba]
 #   -> build/BladeAndStone.gba   (+ build/BladeAndStone.ups against the clean FE8 ROM)
+#   --clean  rebuild the engine from scratch (only needed if something looks stale)
 # Debug switches:  BS_DEFINES="BS_DEBUG_SEIZE BS_DEBUG_CH1" BS_OUT=debug ./build.sh
 set -eo pipefail
 cd "$(dirname "$(readlink -f "$0")")"
+CLEAN=0
+if [ "$1" = "--clean" ]; then CLEAN=1; shift; fi
 FE8="${1:-roms/fe8u.gba}"
 FE7="${2:-roms/fe7u.gba}"
-[ -f "$FE8" ] || { echo "missing clean FE8U ROM: $FE8"; exit 1; }
-[ -f "$FE7" ] || { echo "missing clean FE7U ROM: $FE7"; exit 1; }
-[ -d engine ] || ./setup.sh
+[ -f "$FE8" ] || { echo "missing clean FE8U ROM: $FE8 (see README: Building)"; exit 1; }
+[ -f "$FE7" ] || { echo "missing clean FE7U ROM: $FE7 (see README: Building)"; exit 1; }
+python3 tools/checkroms.py "$FE8" "$FE7"
+[ -x engine/Tools/EventAssembler/ColorzCore ] || ./setup.sh
 
+if [ -z "$DEVKITPRO" ] && [ -d .toolchain/devkitpro ]; then DEVKITPRO="$PWD/.toolchain/devkitpro"; fi
 export DEVKITPRO="${DEVKITPRO:-/opt/devkitpro}"
 export DEVKITARM="${DEVKITARM:-$DEVKITPRO/devkitARM}"
 export DOTNET_ROLL_FORWARD=Major
@@ -28,13 +33,19 @@ python3 tools/extract_tables.py "$FE8"
 python3 tools/gencast.py "$FE8" "$FE7"
 python3 tools/port_banims.py "$FE8" "$FE7"
 python3 tools/gentext.py
+for f in src/Text/*.txt; do case "$f" in */codes.txt|*/blade.txt) ;; *) python3 tools/lint_boxes.py "$f" || { echo "text: a box above has 3+ lines (FE8 boxes hold 2); add an [A]"; exit 1; } ;; esac; done
 python3 tools/sync_engine.py
 
 cmp -s "$FE8" engine/fe8.gba || cp -f "$FE8" engine/fe8.gba
 
 echo "== engine (C-SkillSys)"
-make -C engine -j"$(nproc)" 2>&1 | tee build/make.log | grep -E "^\[|rror|MESSAGE|FreeSpace|No errors" | grep -v "^\[CC \]\|^\[LYN\]" || true
-if grep -qE "Errors occurred|error:|Error " build/make.log || ! grep -q "No errors" build/make.log; then
+if [ $CLEAN = 1 ]; then make -s -C engine clean >/dev/null; fi
+set +e
+make -C engine -j"$(nproc)" > build/make.log 2>&1
+status=$?
+set -e
+grep -E "^\[|rror|MESSAGE|FreeSpace|No errors" build/make.log | grep -v "^\[CC \]\|^\[LYN\]" || true
+if [ $status -ne 0 ] || grep -qE "Errors occurred|error:|Error " build/make.log; then
   echo "BUILD FAILED — see build/make.log"; grep -nE "rror" build/make.log | head -30; exit 1
 fi
 OUT="build/${BS_OUT:-BladeAndStone}.gba"

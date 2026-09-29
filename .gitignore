@@ -12,3 +12,4 @@ gen/
 .colorzcore/
 maps/tilesets/
 maps/sketches/*.png
+.toolchain/
