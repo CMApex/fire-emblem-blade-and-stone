@@ -37,6 +37,7 @@ cursed... that the sea there sings.[.][A][0x02][NL]
 [LoadOverworldFaces]This year, for the first time,[NL]
 the singing reached the shore.[.][A][X]
 
+// allow-4-faces: chapter opening, runs after ENUN (no unit is moving)
 ## BS_P_Opening
 [OpenMidLeft][LoadFace][0x02][0x01][OpenMidRight][LoadFace][0x04][0x01][OpenMidLeft]One year to the day. It feels[.][NL]
 like ten, and like none at all.[A][OpenMidRight]The people of Merrow asked for you[.][NL]
@@ -61,6 +62,7 @@ Pilgrims used to come to give thanks[NL]
 for Renais's Sacred Stone, but...[A][OpenMidLeft]But the Stone is gone.[.][NL]
 We all saw what became of it.[.][A][X]
 
+// allow-4-faces: chapter opening, runs after the enemies' ENUN (no unit is moving)
 ## BS_P_Monsters
 [OpenFarRight][LoadFace][0x16][0x01][OpenMidLeft][LoadFace][0x02][0x01][OpenFarRight]Monsters? Here?[.][A][NL]
 The Demon King is dead.[.][NL]
@@ -148,3 +150,4 @@ interesting time.[.][A][X]
 Blade & Stone prologue.[.][A][NL]
 The story continues across the sea,[NL]
 in Lycia.[.][A][X]
+

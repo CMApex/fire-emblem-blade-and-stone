@@ -85,7 +85,7 @@ BS_C1_Shop:
 
 BS_C1_Party:
 #ifdef BS_DEBUG_CH1
-UNIT BS_PID_HECTOR BS_CLASS_HECTOR 0x00 Level(BS_LV_HECTOR, Ally, False) [7,21] 0b 0x0 0x0 0x0 [SteelAxe, HandAxe, Vulnerary, 0] NoAI
+UNIT BS_PID_HECTOR BS_CLASS_HECTOR 0x00 Level(BS_LV_HECTOR, Ally, False) [7,20] 0b 0x0 0x0 0x0 [SteelAxe, HandAxe, Vulnerary, 0] NoAI
 #else
 UNIT BS_PID_HECTOR BS_CLASS_HECTOR 0x00 Level(BS_LV_HECTOR, Ally, False) [12,2] 0b 0x0 0x0 0x0 [SteelAxe, HandAxe, Vulnerary, 0] NoAI
 #endif
@@ -192,6 +192,7 @@ BS_C1_HouseEEvent:
   VillageEventItem(BS_C1_HouseE, 0x24, PureWater)
 
 BS_C1_EndScene:
+  BS_SettleMapSprites        // let the boss's death dissolve finish before any faces load (see BladeAndStone.event)
   MUSC 0x2F
   Text(BS_C1_Ending)
   SetBackground(0x07)

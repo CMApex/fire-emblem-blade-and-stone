@@ -8,6 +8,7 @@ Chapter 1: The Marquess's Docks[X]
 ## BS_Ch1Goal
 Defeat boss[X]
 
+// allow-4-faces: throne-room scene before any unit is loaded
 ## BS_C1_Opening
 [OpenMidRight][LoadOswin][OpenMidLeft][LoadHector][OpenMidRight]Lord Hector. The grain tariffs.[NL]
 The envoy from Laus.[.][A][NL]
@@ -28,6 +29,7 @@ someone to supervise you, obviously![A][OpenMidLeft]Serra. How did you get in he
 not a ghost.[.][A][OpenFarRight]Could've fooled me, with how quietly[NL]
 you eavesdrop.[.][A][OpenFarLeft]Matthew![A][OpenMidLeft]Fine. All of you. We're going.[X]
 
+// allow-4-faces: chapter opening, runs after ENUN (no unit is moving)
 ## BS_C1_MapOpen
 [OpenMidLeft][LoadHector][OpenMidRight][LoadMatthew][OpenMidLeft]Look at their eyes. Empty.[.][NL]
 Like the Morphs on the Dread Isle.[A][OpenMidRight]That ship wasn't here last night,[NL]
@@ -86,13 +88,15 @@ Like they were made of seawater.[.][A][OpenFarRight][LoadMatthew][OpenFarRight]M
 You'll want to see this.[A][OpenMidLeft]Read it.[A][OpenFarRight]"The Merchant Grace, of Port Kiris.[NL]
 Fourth day: the sea is singing.[.][A][NL]
 Fifth day: the singing is in the hold.[NL]
-Sixth day..."[.] That's where it stops.[A][OpenMidRight]Port Kiris? I've never heard of it.[A][OpenFarLeft][LoadOswin][OpenFarLeft]There is no port by that name on any[NL]
-Lycian chart, my lord.[.][A][NL]
-Nor on any Etrurian one.[.][A][OpenFarRight]The log says it sailed from somewhere[NL]
-called Grado.[.][A][NL]
-And there's this. Scratched into the[NL]
+Sixth day..."[.] That's where it stops.[A][NL]
+It says she sailed from somewhere[NL]
+called Grado.[.][A][OpenMidRight]Port Kiris? Grado?[.][NL]
+I've never heard of either.[A][OpenFarRight]And there's this. Scratched into the[NL]
 hold wall, over and over.[.][A][NL]
-"Latona, give them back."[.][A][OpenMidLeft][ToggleMouthMove]...[.][ToggleMouthMove]Give who back?[A][OpenFarRight]Doesn't say, my lord.[.][A][OpenMidLeft]Grado. Latona.[.][NL]
+"Latona, give them back."[.][A][OpenMidLeft][ToggleMouthMove]...[.][ToggleMouthMove]Give who back?[A][OpenFarRight]Doesn't say, my lord.[.][NL]
+I'll turn the hold over again.[.][A][ClearFace][OpenFarLeft][LoadOswin][OpenFarLeft]My lord. There is no port by that[NL]
+name on any Lycian chart.[.][A][NL]
+Nor on any Etrurian one.[.][A][OpenMidLeft]Grado. Latona.[.][NL]
 None of it means a thing to me.[.][A][OpenMidRight]Hector. Come back to Pherae with me.[.][NL]
 Ninian might know something.[.][A][NL]
 She always knows more than she says.[A][OpenMidLeft]Then we find a new chart.[.][NL]
